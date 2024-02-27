@@ -1,14 +1,14 @@
-import {ModuleOptions} from "webpack";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import ReactRefreshTypeScript from "react-refresh-typescript";
-import {BuildOptions} from "./types/types";
-import {buildBabelLoader} from "./babel/buildBabelLoader";
+import { ModuleOptions } from 'webpack'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import ReactRefreshTypeScript from 'react-refresh-typescript'
+import { BuildOptions } from './types/types'
+import { buildBabelLoader } from './babel/buildBabelLoader'
 
 export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
-    const isDev = options.mode === 'development';
+    const isDev = options.mode === 'development'
 
     const assetLoader = {
-        test: /\.(png|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif|ico)$/i,
         type: 'asset/resource',
     }
 
@@ -25,20 +25,22 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
                                 name: 'convertColors',
                                 params: {
                                     currentColor: true,
-                                }
-                            }
-                        ]
-                    }
-                }
-            }
+                                },
+                            },
+                        ],
+                    },
+                },
+            },
         ],
     }
 
     const cssLoaderWithModules = {
-        loader: "css-loader",
+        loader: 'css-loader',
         options: {
             modules: {
-                localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]'
+                localIdentName: isDev
+                    ? '[path][name]__[local]'
+                    : '[hash:base64:8]',
             },
         },
     }
@@ -51,11 +53,10 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
             // Translates CSS into CommonJS
             cssLoaderWithModules,
             // Compiles Sass to CSS
-            "sass-loader",
+            'postcss-loader',
+            'sass-loader',
         ],
     }
-
-
 
     const tsLoader = {
         // ts-loader умеет работать с JSX
@@ -68,21 +69,22 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
                 options: {
                     transpileOnly: true,
                     getCustomTransformers: () => ({
-                        before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
+                        before: [isDev && ReactRefreshTypeScript()].filter(
+                            Boolean
+                        ),
                     }),
-                }
-            }
-        ]
+                },
+            },
+        ],
     }
 
-    const babelLoader = buildBabelLoader(options);
-
+    const babelLoader = buildBabelLoader(options)
 
     return [
         assetLoader,
         scssLoader,
-        // tsLoader,
-        babelLoader,
-        svgrLoader
+        tsLoader,
+        // babelLoader,
+        svgrLoader,
     ]
 }
