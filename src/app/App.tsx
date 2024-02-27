@@ -1,7 +1,8 @@
-import './style/index.scss'
+import { routerConfig, RouterProvider } from './providers/router'
+import './styles/index.scss'
 
 const App = () => {
-    return <div>App</div>
+    return <RouterProvider router={routerConfig} />
 }
 
 export default App
