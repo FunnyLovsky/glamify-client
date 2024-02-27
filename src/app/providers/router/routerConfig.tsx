@@ -3,6 +3,8 @@ import { MainPage } from '@/pages/Main'
 import { createBrowserRouter } from 'react-router-dom'
 import { RoutesName } from './constans/routesName'
 import { NavLayout } from '../layouts/NavLayout'
+import { ProductDetail } from '@/pages/ProductDetail'
+import { ShopLayout } from '../layouts/ShopLayout'
 
 const routerConfig = createBrowserRouter([
     {
@@ -15,7 +17,17 @@ const routerConfig = createBrowserRouter([
             },
             {
                 path: RoutesName.SHOP,
-                element: <CategoryPage />,
+                element: <ShopLayout />,
+                children: [
+                    {
+                        element: <CategoryPage />,
+                        index: true,
+                    },
+                    {
+                        path: RoutesName.PRODUCT_URL,
+                        element: <ProductDetail />,
+                    },
+                ],
             },
         ],
     },

@@ -5,7 +5,8 @@ export enum RoutesName {
     SALES = '/sales',
     STYLES = '/styles',
     CART = '/cart',
-    PRODUCT_URL = '/:productURL',
+    PRODUCT_URL = ':productURL',
     AUTH = '/auth',
     PROFILE = '/profile',
+    CATEGORY = '/:category',
 }
