@@ -9,4 +9,5 @@ export enum RoutesName {
     AUTH = '/auth',
     PROFILE = '/profile',
     CATEGORY = '/:category',
+    UNDEFINED = '*',
 }
