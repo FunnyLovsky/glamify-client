@@ -1,11 +1,16 @@
-import { Link } from 'react-router-dom'
+// import styles from './Main.module.scss'
+import { useEffect } from 'react'
+import { Intro } from '@/widgets/Intro'
 
 const Main = () => {
+    useEffect(() => {
+        document.title = 'GLAMIFY - Модные тренды в мире одежды'
+    }, [])
+
     return (
-        <div>
-            <h1>Main</h1>
-            <Link to="/ds">Куда-то</Link>
-        </div>
+        <main>
+            <Intro />
+        </main>
     )
 }
 

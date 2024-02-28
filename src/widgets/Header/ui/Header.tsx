@@ -18,10 +18,18 @@ const Header = () => {
                     </NavLink>
 
                     <div className={styles.cont}>
-                        <AppLink href={RoutesName.SHOP}>Товары</AppLink>
-                        <AppLink href={RoutesName.SALES}>Скидки</AppLink>
-                        <AppLink href={RoutesName.ARRIVALS}>Новинки</AppLink>
-                        <AppLink href={RoutesName.STYLES}>Стили</AppLink>
+                        <AppLink href={RoutesName.SHOP} type="text">
+                            Товары
+                        </AppLink>
+                        <AppLink href={RoutesName.SALES} type="text">
+                            Скидки
+                        </AppLink>
+                        <AppLink href={RoutesName.ARRIVALS} type="text">
+                            Новинки
+                        </AppLink>
+                        <AppLink href={RoutesName.STYLES} type="text">
+                            Стили
+                        </AppLink>
                     </div>
 
                     <AppInput placeholder="Поиск товаров..." type="search" />

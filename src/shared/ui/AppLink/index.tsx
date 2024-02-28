@@ -5,16 +5,15 @@ import { NavLink } from 'react-router-dom'
 
 interface IProps extends IPropsChildren {
     href: string
+    type: 'text' | 'button'
 }
 
-const AppLink: FC<IProps> = ({ href, children }) => {
+const AppLink: FC<IProps> = ({ href, children, type }) => {
+    const standart = styles[type]
+    const active = [styles[`active_${type}`], styles[type]].join(' ')
+
     return (
-        <NavLink
-            to={href}
-            className={({ isActive }) =>
-                isActive ? [styles.active, styles.link].join(' ') : styles.link
-            }
-        >
+        <NavLink to={href} className={({ isActive }) => (isActive ? active : standart)}>
             {children}
         </NavLink>
     )
