@@ -1,0 +1,24 @@
+@import '@/app/styles/variables';
+
+.link {
+    color: $black_color;
+    transition: 0.3s;
+
+    & svg {
+        width: 24px;
+        height: 24px;
+        transition: 0.3s;
+    }
+
+    &:hover svg {
+        color: lighten($color: $black_color, $amount: 40%);
+    }
+
+    &:active {
+        transform: scale(0.7);
+    }
+}
+
+.active {
+    font-weight: 700;
+}
