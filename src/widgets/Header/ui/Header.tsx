@@ -7,6 +7,7 @@ import AppInput from '@/shared/ui/AppInput'
 import AppIconLink from '@/shared/ui/AppIconLink'
 import CART from '@/shared/assets/icons/cart.svg'
 import PROFILE from '@/shared/assets/icons/profile.svg'
+import { ProfileIcon } from '@/entities/User'
 
 const Header = () => {
     return (
@@ -36,7 +37,7 @@ const Header = () => {
 
                     <div className={styles.cont}>
                         <AppIconLink href={RoutesName.CART} Icon={CART} />
-                        <AppIconLink href={RoutesName.PROFILE} Icon={PROFILE} />
+                        <ProfileIcon />
                     </div>
                 </nav>
             </Conatiner>

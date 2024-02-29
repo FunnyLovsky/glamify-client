@@ -1,0 +1,19 @@
+@import '@/app/styles/variables';
+
+.login {
+    color: $bg_white_color;
+    background: $black_color;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+
+    &:hover {
+        background: lighten($color: $black_color, $amount: 30px);
+    }
+
+    &:active {
+        transform: scale(0.7);
+    }
+}

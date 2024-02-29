@@ -8,11 +8,14 @@ import { ProductDetailPage } from '@/pages/ProductDetail'
 import { CartPage } from '@/pages/Cart'
 import { AuthPage } from '@/pages/Auth'
 import { ProfilePage } from '@/pages/Profile'
+import { authLoader } from '@/entities/User'
 
 const routerConfig = createBrowserRouter([
     {
         path: RoutesName.MAIN,
         element: <NavLayout />,
+        id: 'nav',
+        loader: authLoader,
         children: [
             {
                 element: <MainPage />,

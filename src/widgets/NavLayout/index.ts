@@ -1,1 +1,3 @@
-export { default as NavLayout } from './ui/NavLayout'
+import NavLayout from './ui/NavLayout'
+
+export { NavLayout }
