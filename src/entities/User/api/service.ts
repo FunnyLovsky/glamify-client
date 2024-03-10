@@ -5,14 +5,7 @@ import $api from '@/shared/api/api'
 
 export class Services {
     static async auth() {
-        const response = await fetch(`${API_URL}/user/auth`)
-
-        if (!response.ok) {
-            const res = await response.json()
-            throw Error(res.message)
-        }
-
-        return await response.json()
+        return $api.get<AuthResponse>(`${API_URL}/user/auth`)
     }
 
     static async refresh(): Promise<AxiosResponse<AuthResponse>> {

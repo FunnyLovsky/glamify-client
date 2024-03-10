@@ -14,6 +14,20 @@ interface IProps {
 const Product: FC<IProps> = ({ data, catalog }) => {
     const { price, discount } = data
     const path = catalog ? catalog : RoutesName.SHOP
+
+    const withDiscount = (
+        <div className={styles.price_cont}>
+            <div>₽{Math.floor(price * (1 - discount / 100))}</div>
+            <div className={styles.old_price}>₽{data.price}</div>
+            <div className={styles.discount}>-{discount}%</div>
+        </div>
+    )
+
+    const withoutDiscount = (
+        <div className={styles.price_cont}>
+            <div>₽{data.price}</div>
+        </div>
+    )
     return (
         <Link to={`${path}/${data.url}`} className={styles.product}>
             <div className={styles.img}>
@@ -28,17 +42,7 @@ const Product: FC<IProps> = ({ data, catalog }) => {
                 </p>
             </div>
 
-            {discount ? (
-                <div className={styles.price_cont}>
-                    <div>₽{Math.floor(price * (1 - discount / 100))}</div>
-                    <div className={styles.old_price}>₽{data.price}</div>
-                    <div className={styles.discount}>-{discount}%</div>
-                </div>
-            ) : (
-                <div className={styles.price_cont}>
-                    <div>₽{data.price}</div>
-                </div>
-            )}
+            {discount ? withDiscount : withoutDiscount}
         </Link>
     )
 }
