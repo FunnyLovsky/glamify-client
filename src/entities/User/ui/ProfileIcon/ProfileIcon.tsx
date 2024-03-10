@@ -1,5 +1,5 @@
 import { RoutesName } from '@/app/providers/router'
-import { useRouteLoaderData } from 'react-router-dom'
+import { useAsyncValue, useRouteLoaderData } from 'react-router-dom'
 import styles from './ProfileIcon.module.scss'
 import AppIconLink from '@/shared/ui/AppIconLink'
 import PROFILE from '@/shared/assets/icons/profile.svg'
@@ -7,14 +7,10 @@ import AsyncComponent from '@/shared/ui/AsyncComponent'
 import AuthBtn from '../AuthBtn/AuthBtn'
 
 const ProfileIcon = () => {
-    const data: any = useRouteLoaderData('nav')
-    const loader = <p>Loading...</p>
+    const data = useAsyncValue()
+    console.log(data)
 
-    return (
-        <AsyncComponent data={data.auth} error={<AuthBtn />} loader={loader}>
-            <AppIconLink href={RoutesName.PROFILE} Icon={PROFILE} />
-        </AsyncComponent>
-    )
+    return <AppIconLink href={RoutesName.PROFILE} Icon={PROFILE} />
 }
 
 export default ProfileIcon

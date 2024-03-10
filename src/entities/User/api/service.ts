@@ -4,8 +4,8 @@ import { AuthResponse } from '../types/IAuthResponse'
 import $api from '@/shared/api/api'
 
 export class Services {
-    static async auth() {
-        return $api.get<AuthResponse>(`${API_URL}/user/auth`)
+    static async auth(): Promise<AxiosResponse<AuthResponse>> {
+        return $api.get<AuthResponse>(`/user/auth`)
     }
 
     static async refresh(): Promise<AxiosResponse<AuthResponse>> {

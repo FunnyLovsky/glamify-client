@@ -1,5 +1,5 @@
 import { Navigate, createBrowserRouter } from 'react-router-dom'
-import { RoutesName } from './constans/routesName'
+import { RoutesName } from '../constans/routesName'
 import { NavLayout } from '@/widgets/NavLayout'
 import { ShopLayout } from '@/widgets/ShopLayout'
 import { CategoryPage } from '@/pages/Category'
