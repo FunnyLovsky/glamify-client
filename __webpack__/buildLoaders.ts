@@ -38,9 +38,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
         loader: 'css-loader',
         options: {
             modules: {
-                localIdentName: isDev
-                    ? '[path][name]__[local]'
-                    : '[hash:base64:8]',
+                localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:8]',
             },
         },
     }
@@ -69,9 +67,7 @@ export function buildLoaders(options: BuildOptions): ModuleOptions['rules'] {
                 options: {
                     transpileOnly: true,
                     getCustomTransformers: () => ({
-                        before: [isDev && ReactRefreshTypeScript()].filter(
-                            Boolean
-                        ),
+                        before: [isDev && ReactRefreshTypeScript()].filter(Boolean),
                     }),
                 },
             },

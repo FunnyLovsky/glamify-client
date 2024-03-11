@@ -21,14 +21,17 @@ export const userSlice = createSlice({
         builder.addCase(authUser.pending, (state) => {
             state.isLoading = true
             state.error = null
+            state.auth = false
         })
         builder.addCase(authUser.fulfilled, (state, action) => {
             state.isLoading = false
             state.user = action.payload.user
+            state.auth = true
         })
         builder.addCase(authUser.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
+            state.auth = false
         })
     },
 })

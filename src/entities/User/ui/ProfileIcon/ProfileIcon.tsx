@@ -1,16 +1,18 @@
 import { RoutesName } from '@/app/providers/router'
-import { useAsyncValue, useRouteLoaderData } from 'react-router-dom'
-import styles from './ProfileIcon.module.scss'
 import AppIconLink from '@/shared/ui/AppIconLink'
 import PROFILE from '@/shared/assets/icons/profile.svg'
-import AsyncComponent from '@/shared/ui/AsyncComponent'
 import AuthBtn from '../AuthBtn/AuthBtn'
+import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 
 const ProfileIcon = () => {
-    const data = useAsyncValue()
-    console.log(data)
+    const { auth, isLoading } = useAppSelector((state) => state.userReducer)
+    console.log(isLoading)
 
-    return <AppIconLink href={RoutesName.PROFILE} Icon={PROFILE} />
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
+
+    return <>{auth ? <AppIconLink href={RoutesName.PROFILE} Icon={PROFILE} /> : <AuthBtn />}</>
 }
 
 export default ProfileIcon

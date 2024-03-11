@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import userReducer from '@/entities/User/model/slice/userSilce'
+
 const rootReducer = combineReducers({
     userReducer,
 })

@@ -1,5 +1,5 @@
 import { RoutesName } from '@/app/providers/router'
-import { NavLink, useRouteLoaderData } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styles from './Header.module.scss'
 import Conatiner from '@/shared/ui/Container'
 import AppLink from '@/shared/ui/AppLink'
@@ -7,14 +7,8 @@ import AppInput from '@/shared/ui/AppInput'
 import AppIconLink from '@/shared/ui/AppIconLink'
 import CART from '@/shared/assets/icons/cart.svg'
 import { ProfileIcon } from '@/entities/User'
-import AsyncComponent from '@/shared/ui/AsyncComponent'
-import AuthBtn from '@/entities/User/ui/AuthBtn/AuthBtn'
 
 const Header = () => {
-    const data: any = useRouteLoaderData('nav')
-    const loader = <p>Loading...</p>
-    console.log('header')
-
     return (
         <header className={styles.header}>
             <Conatiner>
@@ -42,9 +36,7 @@ const Header = () => {
 
                     <div className={styles.cont}>
                         <AppIconLink href={RoutesName.CART} Icon={CART} />
-                        <AsyncComponent data={data.auth} error={<AuthBtn />} loader={loader}>
-                            <ProfileIcon />
-                        </AsyncComponent>
+                        <ProfileIcon />
                     </div>
                 </nav>
             </Conatiner>

@@ -30,7 +30,7 @@ $api.interceptors.response.use(
 )
 
 $api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer 1eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAbWFpbC5jb20iLCJpZCI6IjY1ZGNkNGYwOWRlOTNiODAzMjI4ZGI4OSIsIm5hbWUiOiJVc2VyIiwiaWF0IjoxNzEwMDgzMzczLCJleHAiOjE3MTAxNjk3NzN9.gFCA1_C6M3rgBvYjDRkeNStzLClIIb1iHZdlxMw5Cp8`
+    config.headers.Authorization = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudHlrQG1haWwuY29tIiwiaWQiOiI2NWVlMDgzNjE0M2FmZWJjZDUxZjExNTgiLCJuYW1lIjoiQW50eWsiLCJpYXQiOjE3MTAxNTAxMjcsImV4cCI6MTcxMDIzNjUyN30.V31IV-2_TeCKqHaymAAf4zvG8ekdT5VSlm7j-4oPRxA`
     return config
 })
 
