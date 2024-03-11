@@ -8,6 +8,7 @@ import { ProductDetailPage } from '@/pages/ProductDetail'
 import { CartPage } from '@/pages/Cart'
 import { AuthPage } from '@/pages/Auth'
 import { ProfilePage } from '@/pages/Profile'
+import { Suspense } from 'react'
 
 const routerConfig = createBrowserRouter([
     {
@@ -80,7 +81,11 @@ const routerConfig = createBrowserRouter([
             },
             {
                 path: RoutesName.AUTH,
-                element: <AuthPage />,
+                element: (
+                    <Suspense>
+                        <AuthPage />
+                    </Suspense>
+                ),
             },
             {
                 path: RoutesName.PROFILE,

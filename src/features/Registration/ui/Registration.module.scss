@@ -1,0 +1,51 @@
+@import '@/app/styles/variables';
+
+.intro {
+    width: 100%;
+    height: 100%;
+    background: $bg_header_color;
+
+    &_cont {
+        width: 50%;
+        padding: 100px 0;
+    }
+}
+
+.title {
+    font-size: 54px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 23px;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: $paragph_color;
+    margin-bottom: 30px;
+}
+
+.results {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 48px;
+}
+
+.result_item {
+    &:nth-child(1) {
+        padding-right: 32px;
+    }
+    &:nth-child(2) {
+        border-right: 1px solid $stroke_color;
+        border-left: 1px solid $stroke_color;
+        padding: 0 32px;
+    }
+    &:nth-child(3) {
+        padding-left: 32px;
+    }
+}
+
+.count {
+    font-size: 40px;
+    font-weight: bold;
+}

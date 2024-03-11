@@ -32,7 +32,7 @@ const Header = () => {
                         </AppLink>
                     </div>
 
-                    <AppInput placeholder="Поиск товаров..." type="search" />
+                    <AppInput placeholder="Поиск товаров..." type="text" icon="search" />
 
                     <div className={styles.cont}>
                         <AppIconLink href={RoutesName.CART} Icon={CART} />
