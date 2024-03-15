@@ -1,4 +1,4 @@
-import { Navigate, createBrowserRouter } from 'react-router-dom'
+import { Navigate, RouteObject } from 'react-router-dom'
 import { RoutesName } from '../constans/routesName'
 import { NavLayout } from '@/widgets/NavLayout'
 import { ShopLayout } from '@/widgets/ShopLayout'
@@ -8,9 +8,9 @@ import { ProductDetailPage } from '@/pages/ProductDetail'
 import { CartPage } from '@/pages/Cart'
 import { AuthPage } from '@/pages/Auth'
 import { ProfilePage } from '@/pages/Profile'
-import { Suspense } from 'react'
+import SuspenseWrapper from '../ui/SuspenseWrapper'
 
-const routerConfig = createBrowserRouter([
+export const defaultRoutes: RouteObject[] = [
     {
         path: RoutesName.MAIN,
         element: <NavLayout />,
@@ -79,24 +79,32 @@ const routerConfig = createBrowserRouter([
                 path: RoutesName.CART,
                 element: <CartPage />,
             },
-            {
-                path: RoutesName.AUTH,
-                element: (
-                    <Suspense>
-                        <AuthPage />
-                    </Suspense>
-                ),
-            },
-            {
-                path: RoutesName.PROFILE,
-                element: <ProfilePage />,
-            },
-            {
-                path: RoutesName.UNDEFINED,
-                element: <Navigate to={RoutesName.MAIN} replace />,
-            },
         ],
     },
-])
+]
 
-export default routerConfig
+export const authRoutes: RouteObject[] = [
+    {
+        path: RoutesName.PROFILE,
+        element: <ProfilePage />,
+    },
+    {
+        path: RoutesName.UNDEFINED,
+        element: <Navigate to={RoutesName.MAIN} replace />,
+    },
+]
+
+export const publicRoutes: RouteObject[] = [
+    {
+        path: RoutesName.AUTH,
+        element: (
+            <SuspenseWrapper>
+                <AuthPage />
+            </SuspenseWrapper>
+        ),
+    },
+    {
+        path: RoutesName.UNDEFINED,
+        element: <Navigate to={RoutesName.MAIN} replace />,
+    },
+]

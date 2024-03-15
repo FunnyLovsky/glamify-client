@@ -1,5 +1,4 @@
 import { RoutesName } from './constans/routesName'
-import routerConfig from './config/routerConfig'
-import { RouterProvider } from 'react-router-dom'
+import AppRouter from './ui/AppRouter'
 
-export { routerConfig, RouterProvider, RoutesName }
+export { AppRouter, RoutesName }
