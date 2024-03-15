@@ -30,7 +30,7 @@ $api.interceptors.response.use(
 )
 
 $api.interceptors.request.use((config) => {
-    config.headers.Authorization = `Bearer 1 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFudHlrQG1haWwuY29tIiwiaWQiOiI2NWVlMDgzNjE0M2FmZWJjZDUxZjExNTgiLCJuYW1lIjoiQW50eWsiLCJpYXQiOjE3MTAxNTAxMjcsImV4cCI6MTcxMDIzNjUyN30.V31IV-2_TeCKqHaymAAf4zvG8ekdT5VSlm7j-4oPRxA`
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
     return config
 })
 

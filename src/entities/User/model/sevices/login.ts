@@ -6,6 +6,7 @@ export const loginUser = createAppAsyncThunk(
     async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
         try {
             const response = await Services.login(email, password)
+            localStorage.setItem('token', response.data.accessToken)
             return response.data
         } catch (error) {
             return rejectWithValue(error.message)
