@@ -6,7 +6,6 @@ import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 
 const ProfileIcon = () => {
     const { auth, isLoading } = useAppSelector((state) => state.userReducer)
-    console.log(isLoading)
 
     if (isLoading) {
         return <p>Loading...</p>

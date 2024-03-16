@@ -1,1 +1,5 @@
-export { default as CategoryPage } from './ui/Category'
+import { lazy } from 'react'
+
+const CategoryPage = lazy(() => import('./ui/Category'))
+
+export { CategoryPage }

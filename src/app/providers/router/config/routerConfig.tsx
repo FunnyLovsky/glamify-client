@@ -16,7 +16,11 @@ export const defaultRoutes: RouteObject[] = [
         element: <NavLayout />,
         children: [
             {
-                element: <MainPage />,
+                element: (
+                    <SuspenseWrapper>
+                        <MainPage />
+                    </SuspenseWrapper>
+                ),
                 index: true,
             },
             {
@@ -24,12 +28,20 @@ export const defaultRoutes: RouteObject[] = [
                 element: <ShopLayout />,
                 children: [
                     {
-                        element: <CategoryPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <CategoryPage />
+                            </SuspenseWrapper>
+                        ),
                         index: true,
                     },
                     {
                         path: RoutesName.PRODUCT_URL,
-                        element: <ProductDetailPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <ProductDetailPage />
+                            </SuspenseWrapper>
+                        ),
                     },
                 ],
             },
@@ -38,12 +50,20 @@ export const defaultRoutes: RouteObject[] = [
                 element: <ShopLayout />,
                 children: [
                     {
-                        element: <CategoryPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <CategoryPage />
+                            </SuspenseWrapper>
+                        ),
                         index: true,
                     },
                     {
                         path: RoutesName.PRODUCT_URL,
-                        element: <ProductDetailPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <ProductDetailPage />
+                            </SuspenseWrapper>
+                        ),
                     },
                 ],
             },
@@ -52,12 +72,20 @@ export const defaultRoutes: RouteObject[] = [
                 element: <ShopLayout />,
                 children: [
                     {
-                        element: <CategoryPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <CategoryPage />
+                            </SuspenseWrapper>
+                        ),
                         index: true,
                     },
                     {
                         path: RoutesName.PRODUCT_URL,
-                        element: <ProductDetailPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <ProductDetailPage />
+                            </SuspenseWrapper>
+                        ),
                     },
                 ],
             },
@@ -66,18 +94,30 @@ export const defaultRoutes: RouteObject[] = [
                 element: <ShopLayout />,
                 children: [
                     {
-                        element: <CategoryPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <CategoryPage />
+                            </SuspenseWrapper>
+                        ),
                         index: true,
                     },
                     {
                         path: RoutesName.PRODUCT_URL,
-                        element: <ProductDetailPage />,
+                        element: (
+                            <SuspenseWrapper>
+                                <ProductDetailPage />
+                            </SuspenseWrapper>
+                        ),
                     },
                 ],
             },
             {
                 path: RoutesName.CART,
-                element: <CartPage />,
+                element: (
+                    <SuspenseWrapper>
+                        <CartPage />
+                    </SuspenseWrapper>
+                ),
             },
         ],
     },
@@ -86,7 +126,11 @@ export const defaultRoutes: RouteObject[] = [
 export const authRoutes: RouteObject[] = [
     {
         path: RoutesName.PROFILE,
-        element: <ProfilePage />,
+        element: (
+            <SuspenseWrapper>
+                <ProfilePage />
+            </SuspenseWrapper>
+        ),
     },
     {
         path: RoutesName.UNDEFINED,

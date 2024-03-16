@@ -1,1 +1,5 @@
-export { default as ProfilePage } from './ui/Profile'
+import { lazy } from 'react'
+
+const ProfilePage = lazy(() => import('./ui/Profile'))
+
+export { ProfilePage }

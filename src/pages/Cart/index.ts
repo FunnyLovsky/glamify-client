@@ -1,1 +1,5 @@
-export { default as CartPage } from './ui/Cart'
+import { lazy } from 'react'
+
+const CartPage = lazy(() => import('./ui/Cart'))
+
+export { CartPage }
