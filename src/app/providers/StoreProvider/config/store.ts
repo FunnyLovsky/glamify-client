@@ -1,10 +1,11 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import userReducer from '@/entities/User/model/slice/userSilce'
-import authReducer from '@/entities/User/model/slice/authSlice'
+import { cartReducer } from '@/entities/Cart'
+import { authReducer, userReducer } from '@/entities/User'
 
 const rootReducer = combineReducers({
     userReducer,
     authReducer,
+    cartReducer,
 })
 
 export const setupStore = () => {

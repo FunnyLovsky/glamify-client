@@ -1,4 +1,5 @@
 import { Account } from '@/widgets/Account'
+import { Breadcrumb } from '@/widgets/Breadcrumb'
 import { useEffect } from 'react'
 
 const Profile = () => {
@@ -6,7 +7,12 @@ const Profile = () => {
         document.title = 'GLAMIFY - Ваш профиль на сайте'
     }, [])
 
-    return <Account />
+    return (
+        <>
+            <Breadcrumb />
+            <Account />
+        </>
+    )
 }
 
 export default Profile

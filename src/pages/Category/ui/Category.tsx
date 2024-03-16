@@ -1,4 +1,5 @@
 import { RoutesName } from '@/app/providers/router'
+import { Breadcrumb } from '@/widgets/Breadcrumb'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
@@ -22,7 +23,12 @@ const Category = () => {
         document.title = routeTitles[location.pathname]
     }, [location.pathname])
 
-    return <h1>Category: {category}</h1>
+    return (
+        <>
+            <Breadcrumb />
+            <h1>Category: {category}</h1>
+        </>
+    )
 }
 
 export default Category

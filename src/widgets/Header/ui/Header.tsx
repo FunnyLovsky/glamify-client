@@ -7,6 +7,7 @@ import AppInput from '@/shared/ui/AppInput'
 import AppIconLink from '@/shared/ui/AppIconLink'
 import CART from '@/shared/assets/icons/cart.svg'
 import { ProfileIcon } from '@/entities/User'
+import { CartIcon } from '@/entities/Cart'
 
 const Header = () => {
     return (
@@ -35,7 +36,8 @@ const Header = () => {
                     <AppInput placeholder="Поиск товаров..." type="text" icon="search" />
 
                     <div className={styles.cont}>
-                        <AppIconLink href={RoutesName.CART} Icon={CART} />
+                        <CartIcon />
+
                         <ProfileIcon />
                     </div>
                 </nav>

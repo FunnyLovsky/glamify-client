@@ -1,4 +1,5 @@
 import { Authorization } from '@/widgets/Authorization'
+import { Breadcrumb } from '@/widgets/Breadcrumb'
 import { useEffect } from 'react'
 
 const Auth = () => {
@@ -6,7 +7,12 @@ const Auth = () => {
         document.title = 'GLAMIFY - Войти или зарегистрироваться'
     }, [])
 
-    return <Authorization />
+    return (
+        <>
+            <Breadcrumb />
+            <Authorization />
+        </>
+    )
 }
 
 export default Auth
