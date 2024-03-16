@@ -5,7 +5,7 @@ import AuthBtn from '../AuthBtn/AuthBtn'
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 
 const ProfileIcon = () => {
-    const { auth, isLoading } = useAppSelector((state) => state.userReducer)
+    const { auth, isLoading } = useAppSelector((state) => state.authReducer)
 
     if (isLoading) {
         return <p>Loading...</p>

@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { authUser } from '../sevices/auth'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { UserState } from '../types/userState'
 import { loginUser } from '../sevices/login'
+import { logoutUser } from '../sevices/logout'
+import { IUser } from '../../types/IUser'
 
 const initialState: UserState = {
-    auth: false,
     user: {
         email: '',
         id: '',
@@ -17,39 +17,39 @@ const initialState: UserState = {
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        setUser(state, action: PayloadAction<IUser>) {
+            state.user = action.payload
+        },
+    },
     extraReducers: (builder) => {
-        builder.addCase(authUser.pending, (state) => {
-            state.isLoading = true
-        })
-        builder.addCase(authUser.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.user = action.payload.user
-            state.auth = true
-        })
-        builder.addCase(authUser.rejected, (state, action) => {
-            state.isLoading = false
-            state.error = action.payload
-            state.auth = false
-        })
-
         builder.addCase(loginUser.pending, (state) => {
             state.isLoading = true
             state.error = null
-            state.auth = false
         })
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isLoading = false
             state.user = action.payload.user
-            state.auth = true
         })
         builder.addCase(loginUser.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
-            state.auth = false
+        })
+
+        builder.addCase(logoutUser.pending, (state) => {
+            state.isLoading = true
+            state.error = null
+        })
+        builder.addCase(logoutUser.fulfilled, (state) => {
+            state.isLoading = false
+            state.user = { email: '', id: '', name: '' }
+        })
+        builder.addCase(logoutUser.rejected, (state, action) => {
+            state.isLoading = false
+            state.error = action.payload
         })
     },
 })
 
-export const {} = userSlice.actions
+export const { setUser } = userSlice.actions
 export default userSlice.reducer

@@ -1,14 +1,14 @@
 import { createAppAsyncThunk } from '@/app/providers/StoreProvider/lib/hooks'
 import { Services } from '../../api/service'
-import { setUser } from '../slice/userSilce'
+import { setAuth } from '../slice/authSlice'
 
-export const authUser = createAppAsyncThunk(
-    'user/authUser',
+export const logoutUser = createAppAsyncThunk(
+    'user/logoutUser',
     async (_, { rejectWithValue, dispatch }) => {
         try {
-            const response = await Services.auth()
-            localStorage.setItem('token', response.data.accessToken)
-            dispatch(setUser(response.data.user))
+            await Services.logout()
+            localStorage.removeItem('token')
+            dispatch(setAuth(false))
         } catch (error) {
             return rejectWithValue(error.message)
         }

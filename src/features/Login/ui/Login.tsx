@@ -1,7 +1,7 @@
 import AppInput from '@/shared/ui/AppInput'
 import styles from './Login.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { loginUser } from '@/entities/User'
 
 const Login = () => {

@@ -4,7 +4,7 @@ import { useAppSelector } from '../../StoreProvider/lib/hooks'
 import { deepCopy } from '../lib/deepCopy'
 
 const AppRouter = () => {
-    const { auth } = useAppSelector((state) => state.userReducer)
+    const { auth } = useAppSelector((state) => state.authReducer)
     const routerConfig = deepCopy(defaultRoutes)
 
     const routes = auth ? authRoutes : publicRoutes

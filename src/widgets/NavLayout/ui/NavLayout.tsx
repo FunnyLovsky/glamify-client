@@ -9,7 +9,9 @@ const NavLayout = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(authUser())
+        if (localStorage.getItem('token')) {
+            dispatch(authUser())
+        }
     }, [dispatch])
 
     return (
