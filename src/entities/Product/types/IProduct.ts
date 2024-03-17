@@ -20,5 +20,11 @@ export interface IProductDetail {
     description: string
     sizes: string[]
     details: [string[]]
-    colors: string[]
+    colors: Colors[]
+}
+
+interface Colors {
+    name: string
+    code: string
+    images: string[]
 }

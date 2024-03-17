@@ -1,36 +1,22 @@
-import { useFetchProductDetail } from '@/entities/Product/model/services/useFetchProductDetail'
-import Conatiner from '@/shared/ui/Container'
-import LoaderPage from '@/shared/ui/LoaderPage'
+import { useAppDispatch } from '@/app/providers/StoreProvider/lib/hooks'
+import { fetchProductDetail } from '@/entities/Product/model/services/fetchProductDetail'
 import { Breadcrumb } from '@/widgets/Breadcrumb'
+import { InfoProduct } from '@/widgets/InfoProduct'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
     const { productURL } = useParams()
-    const { error, isLoading, product } = useFetchProductDetail(productURL)
+    const dispatch = useAppDispatch()
 
-    if (error) {
-        return (
-            <>
-                <Breadcrumb />
-                <Conatiner>
-                    <h1>{error}</h1>
-                </Conatiner>
-            </>
-        )
-    }
+    useEffect(() => {
+        dispatch(fetchProductDetail({ productURL }))
+    }, [dispatch, productURL])
+
     return (
         <>
             <Breadcrumb />
-            <Conatiner>
-                {isLoading ? (
-                    <LoaderPage />
-                ) : (
-                    <>
-                        <h1>{product.name}</h1>
-                        <h2>{product.rating}/5</h2>
-                    </>
-                )}
-            </Conatiner>
+            <InfoProduct />
         </>
     )
 }
