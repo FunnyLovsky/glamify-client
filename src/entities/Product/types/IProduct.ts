@@ -6,3 +6,19 @@ export interface IProduct {
     url: string
     image: string
 }
+
+export interface IProductDetail {
+    id: string
+    name: string
+    image: string
+    rating: number
+    price: number
+    discount: number | null
+    category: string
+    gender: string
+    style: string
+    description: string
+    sizes: string[]
+    details: [string[]]
+    colors: string[]
+}
