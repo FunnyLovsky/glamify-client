@@ -1,10 +1,17 @@
+import { Breadcrumb } from '@/widgets/Breadcrumb'
+import { CartProduct } from '@/widgets/CartProduct'
 import { useEffect } from 'react'
 
 const Cart = () => {
     useEffect(() => {
         document.title = 'GLAMIFY - Ваша корзина покупок'
     }, [])
-    return <h1>Cart Page</h1>
+    return (
+        <>
+            <Breadcrumb />
+            <CartProduct />
+        </>
+    )
 }
 
 export default Cart

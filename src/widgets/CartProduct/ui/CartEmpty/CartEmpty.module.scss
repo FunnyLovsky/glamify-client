@@ -1,0 +1,17 @@
+@import '@/app/styles/variables';
+
+.cont {
+    position: relative;
+}
+
+.count {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 12px;
+    background: $discount_precent_color;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 2px 10px;
+}

@@ -1,0 +1,37 @@
+@import '@/app/styles/variables';
+
+.terminal {
+    width: 40%;
+    height: 100%;
+    padding: 20px 24px;
+    border-radius: 20px;
+    border: 1px solid $stroke_color;
+
+    & h2 {
+        margin-bottom: 24px;
+    }
+}
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    & span {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    & h4 {
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    &:nth-child(3) {
+        padding-bottom: 20px;
+        border-bottom: 1px solid $stroke_color;
+        & span {
+            color: $discount_precent_color;
+        }
+    }
+}
