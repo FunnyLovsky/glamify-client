@@ -1,0 +1,42 @@
+@import '@/app/styles/variables';
+
+.btn {
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    outline: none;
+
+    &:active {
+        transform: scale(0.8);
+    }
+}
+
+.small {
+    padding: 12px 24px;
+}
+
+.big {
+    width: 100%;
+    padding: 16px;
+}
+
+.black {
+    background: $black_color;
+    color: white;
+
+    &:hover {
+        background: lighten($color: $black_color, $amount: 30px);
+    }
+}
+
+.white {
+    background: $bg_footer_color;
+    color: $paragph_color;
+
+    &:hover {
+        background: darken($color: $bg_footer_color, $amount: 10px);
+    }
+}
