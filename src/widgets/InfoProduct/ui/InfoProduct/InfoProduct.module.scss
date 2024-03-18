@@ -1,0 +1,20 @@
+@import '@/app/styles/variables';
+
+.cont {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 36px;
+}
+
+.info {
+    width: 50%;
+}
+
+.description {
+    font-size: 16px;
+    margin-top: 20px;
+    color: $paragph_color;
+    margin-bottom: 24px;
+}

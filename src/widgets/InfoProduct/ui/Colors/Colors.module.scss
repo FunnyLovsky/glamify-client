@@ -1,0 +1,26 @@
+@import '@/app/styles/variables';
+
+.cont {
+    width: 100%;
+    padding: 24px 0;
+    border-top: 1px solid $stroke_color;
+    color: $paragph_color;
+}
+
+.title {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.colors {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    & div {
+        width: 37px;
+        height: 37px;
+        border-radius: 50%;
+    }
+}

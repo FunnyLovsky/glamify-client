@@ -1,1 +1,1 @@
-export { default as InfoProduct } from './ui/InfoProduct'
+export { default as InfoProduct } from './ui/InfoProduct/InfoProduct'

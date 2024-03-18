@@ -1,0 +1,42 @@
+@import '@/app/styles/variables';
+
+.price_cont_small {
+    display: flex;
+    font-size: 24px;
+    align-items: center;
+    font-weight: bold;
+    gap: 10px;
+    color: $black_color;
+}
+
+.price_cont_big {
+    display: flex;
+    font-size: 32px;
+    align-items: center;
+    font-weight: bold;
+    gap: 12px;
+    color: $black_color;
+}
+
+.old_price {
+    color: $discount_price_color;
+    text-decoration: line-through;
+}
+
+.discount_small {
+    font-size: 12px;
+    font-weight: 600;
+    color: $discount_precent_color;
+    background: $diccount_bg_precent;
+    padding: 6px 12px;
+    border-radius: 12px;
+}
+
+.discount_big {
+    font-size: 16px;
+    font-weight: 600;
+    color: $discount_precent_color;
+    background: $diccount_bg_precent;
+    padding: 6px 14px;
+    border-radius: 12px;
+}

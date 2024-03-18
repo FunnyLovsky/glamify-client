@@ -1,13 +1,5 @@
 @import '@/app/styles/variables';
 
-.cont {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-    margin-top: 36px;
-}
-
 .imgs {
     width: 50%;
     display: flex;
@@ -48,13 +40,4 @@
             object-fit: cover;
         }
     }
-}
-
-.info {
-    width: 50%;
-}
-
-.title {
-    font-size: 35px;
-    font-weight: bold;
 }
