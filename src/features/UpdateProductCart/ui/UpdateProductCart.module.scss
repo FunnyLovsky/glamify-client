@@ -1,0 +1,41 @@
+@import '@/app/styles/variables';
+
+.cont {
+    width: 100%;
+    padding: 24px 0 0px;
+    border-top: 1px solid $stroke_color;
+    color: $paragph_color;
+}
+
+.title {
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.colors {
+    width: 100%;
+    display: flex;
+    gap: 16px;
+}
+
+.color_item {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+    outline: 2px solid transparent;
+
+    & svg {
+        color: white;
+    }
+
+    &:hover {
+        outline: 2px solid $paragph_color;
+        cursor: pointer;
+    }
+}

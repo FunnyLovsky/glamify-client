@@ -40,3 +40,12 @@
         background: darken($color: $bg_footer_color, $amount: 10px);
     }
 }
+
+.delete {
+    background: $diccount_bg_precent;
+    color: $discount_precent_color;
+
+    &:hover {
+        background: darken($color: $diccount_bg_precent, $amount: 10px);
+    }
+}

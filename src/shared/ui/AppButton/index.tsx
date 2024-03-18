@@ -3,7 +3,7 @@ import styles from './AppButton.module.scss'
 import { IPropsChildren } from '@/shared/types/IComponents'
 
 interface IProps extends IPropsChildren {
-    variant: 'black' | 'white'
+    variant: 'black' | 'white' | 'delete'
     type?: 'small' | 'big'
     onClick?: () => void
 }

@@ -1,7 +1,9 @@
-import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import styles from './CartController.module.scss'
-import { FC } from 'react'
+import { FC, useMemo } from 'react'
 import AppButton from '@/shared/ui/AppButton'
+import { addProductAuth, deleteProductAuth } from '@/entities/Cart'
+import { UpdateProductCart } from '@/features/UpdateProductCart'
 
 type Product = { color: string; size: string }
 
@@ -10,18 +12,19 @@ interface IProps {
 }
 
 const CartController: FC<IProps> = ({ product }) => {
-    const { productDetail } = useAppSelector((state) => state.productReducer)
-    const { auth } = useAppSelector((state) => state.authReducer)
+    const { isLoading, error } = useAppSelector((state) => state.cartReducer)
 
-    const addProductToCart = () => {
-        console.log({ ...product, productId: productDetail.id, count: 1 })
+    if (isLoading) {
+        return <p>Loading..</p>
+    }
+
+    if (error) {
+        return <h1>{error}</h1>
     }
 
     return (
         <div className={styles.cont}>
-            <AppButton variant="black" type="big" onClick={addProductToCart}>
-                Добавить в корзину
-            </AppButton>
+            <UpdateProductCart product={product} />
         </div>
     )
 }

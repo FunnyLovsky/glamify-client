@@ -6,4 +6,16 @@ export interface ICartProduct {
     color: string
     size: string
     count: number
+    id: string
+}
+
+export interface ICartResponse {
+    cart: ICartProduct[]
+}
+
+export interface ICartRequest {
+    color: string
+    size: string
+    count: number
+    productId: string
 }
