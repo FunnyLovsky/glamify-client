@@ -3,6 +3,7 @@ import { authUser } from '@/entities/User'
 import { Header } from '@/widgets/Header'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
+import styles from './NavLayout.module.scss'
 
 const NavLayout = () => {
     console.log('navlayou')
@@ -17,7 +18,9 @@ const NavLayout = () => {
     return (
         <>
             <Header />
-            <Outlet />
+            <main className={styles.main}>
+                <Outlet />
+            </main>
         </>
     )
 }

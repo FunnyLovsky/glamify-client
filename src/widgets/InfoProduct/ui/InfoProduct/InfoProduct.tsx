@@ -11,7 +11,7 @@ import Sizes from '../Sizes/Sizes'
 import CartController from '../CartController/CartController'
 
 const InfoProduct = () => {
-    const { error, isLoading, productDetail } = useAppSelector((state) => state.productReducer)
+    const { productDetail } = useAppSelector((state) => state.productReducer)
     const [product, setProduct] = useState({ color: '', size: '' })
 
     const onChangeColor = (color: string) => {
@@ -28,14 +28,6 @@ const InfoProduct = () => {
             onChangeSize(productDetail.sizes[0])
         }
     }, [productDetail])
-
-    if (error) {
-        return <h1>{error}</h1>
-    }
-
-    if (isLoading) {
-        return <LoaderPage />
-    }
 
     return (
         <div className={styles.cont}>

@@ -6,6 +6,8 @@ import { DeleteProductCart } from '@/features/DeleteProductCart'
 import { ChangeCountProductCart } from '@/features/ChangeCountProductCart'
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
+import { Link } from 'react-router-dom'
+import { RoutesName } from '@/app/providers/router'
 
 interface IProps {
     product: ICartProduct
@@ -19,7 +21,10 @@ const ProductCart: FC<IProps> = ({ product }) => {
 
     return (
         <div className={styles.product}>
-            <img src={`${SERVER_URL}/${product.image}`} alt="" />
+            <Link to={`${RoutesName.SHOP}/${product.image}`}>
+                <img src={`${SERVER_URL}/${product.image}`} alt="" />
+            </Link>
+
             <div className={styles.info}>
                 <div className={styles.desc}>
                     <div className={styles.title}>
