@@ -2,7 +2,7 @@ import { createAppAsyncThunk } from '@/app/providers/StoreProvider/lib/hooks'
 import { Services } from '../../api/service'
 
 export const deleteProductAuth = createAppAsyncThunk(
-    'cart/deleteProduct',
+    'cart/deleteProductAuth',
     async (productId: string, { rejectWithValue }) => {
         try {
             const response = await Services.deleteProduct(productId)

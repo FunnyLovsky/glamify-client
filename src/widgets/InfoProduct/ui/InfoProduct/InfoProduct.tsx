@@ -44,6 +44,7 @@ const InfoProduct = () => {
                 <Info data={productDetail} type="big" />
                 <Price data={productDetail} type="big" />
                 <p className={styles.description}>{productDetail.description}</p>
+
                 <Colors product={product} onChange={onChangeColor} />
                 <Sizes product={product} onChange={onChangeSize} />
                 <CartController product={product} />

@@ -1,4 +1,5 @@
 import { addProductAuth } from './model/service/addProduct'
+import { changeCountProductAuth } from './model/service/changeCountProduct'
 import { deleteProductAuth } from './model/service/deleteProduct'
 import cartSlice, {
     setCart,
@@ -17,5 +18,6 @@ export {
     deleteProduct,
     addProductAuth,
     deleteProductAuth,
+    changeCountProductAuth,
 }
 export type { ICartProduct } from './types/ICartProduct'

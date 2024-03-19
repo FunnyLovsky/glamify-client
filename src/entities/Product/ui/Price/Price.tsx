@@ -12,7 +12,7 @@ const Price: FC<IProps> = ({ data, type }) => {
 
     const withDiscount = (
         <div className={styles[`price_cont_${type}`]}>
-            <div>₽{Math.floor(price * (1 - discount / 100))}</div>
+            <div>₽{Math.ceil(price * (1 - discount / 100))}</div>
             <div className={styles.old_price}>₽{data.price}</div>
             <div className={styles[`discount_${type}`]}>-{discount}%</div>
         </div>

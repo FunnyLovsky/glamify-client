@@ -3,7 +3,7 @@ import { Services } from '../../api/service'
 import { ICartRequest } from '../../types/ICartProduct'
 
 export const addProductAuth = createAppAsyncThunk(
-    'cart/addProduct',
+    'cart/addProductAuth',
     async (product: ICartRequest, { rejectWithValue }) => {
         try {
             const response = await Services.addProduct(product)

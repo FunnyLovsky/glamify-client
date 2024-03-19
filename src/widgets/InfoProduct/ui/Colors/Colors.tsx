@@ -2,6 +2,7 @@ import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import styles from './Colors.module.scss'
 import CHECKED from '@/shared/assets/elements/checked.svg'
 import { FC } from 'react'
+import LoaderBtn from '@/shared/ui/LoaderBtn'
 
 type Product = { color: string; size: string }
 
@@ -12,18 +13,22 @@ interface IProps {
 
 const Colors: FC<IProps> = ({ onChange, product }) => {
     const { productDetail } = useAppSelector((state) => state.productReducer)
+    const { isLoading } = useAppSelector((state) => state.cartReducer)
+    const { isLoading: authLoading } = useAppSelector((state) => state.authReducer)
 
-    // const productDetail = {
-    //     colors: [
-    //         { name: 'Blue', code: '#0000ff' },
-    //         { name: 'Green', code: '#25ba26' },
-    //     ],
-    // }
+    const renderContent = () => {
+        if (isLoading || authLoading) {
+            return (
+                <>
+                    <LoaderBtn variant="circle" />
+                    <LoaderBtn variant="circle" />
+                    <LoaderBtn variant="circle" />
+                </>
+            )
+        }
 
-    return (
-        <div className={styles.cont}>
-            <p className={styles.title}>Выберите цвет</p>
-            <div className={styles.colors}>
+        return (
+            <>
                 {productDetail.colors.map((color) => (
                     <button
                         style={{ background: color.code }}
@@ -34,7 +39,14 @@ const Colors: FC<IProps> = ({ onChange, product }) => {
                         {product.color == color.name && <CHECKED />}
                     </button>
                 ))}
-            </div>
+            </>
+        )
+    }
+
+    return (
+        <div className={styles.cont}>
+            <p className={styles.title}>Выберите цвет</p>
+            <div className={styles.colors}>{renderContent()}</div>
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import $api from '@/shared/api/api'
 import { errorHandler } from '@/shared/lib/errorHandler'
-import { ICartProduct, ICartRequest, ICartResponse } from '../types/ICartProduct'
+import { ICartRequest, ICartResponse } from '../types/ICartProduct'
 
 export class Services {
     static async addProduct(product: ICartRequest): Promise<AxiosResponse<ICartResponse>> {
@@ -16,9 +16,9 @@ export class Services {
     static async changeCountProduct(
         productId: string,
         count: number
-    ): Promise<AxiosResponse<ICartProduct[]>> {
+    ): Promise<AxiosResponse<ICartResponse>> {
         try {
-            return await $api.patch<ICartProduct[]>('/cart', { productId, count })
+            return await $api.patch<ICartResponse>('/cart', { productId, count })
         } catch (error) {
             errorHandler(error)
         }

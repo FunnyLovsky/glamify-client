@@ -1,0 +1,105 @@
+@import '@/app/styles/variables';
+
+.cont_big {
+    width: auto;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    height: 51px;
+
+    & div {
+        background: $bg_footer_color;
+        height: 100%;
+        padding: 15px 18px;
+        margin: 0;
+    }
+
+    & button {
+        height: 100%;
+        padding: 16px 20px;
+        background: none;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $bg_footer_color;
+
+        &:hover {
+            background: darken($color: $bg_footer_color, $amount: 10px);
+            cursor: pointer;
+        }
+
+        & svg {
+            transition: 0.3s;
+            width: 24px;
+            height: 24px;
+        }
+
+        &:active svg {
+            transform: scale(0.8);
+        }
+    }
+}
+
+.cont_small {
+    width: auto;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+    height: 43px;
+
+    & div {
+        background: $bg_footer_color;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+
+        & p {
+            padding: 0 15px;
+            margin: 0;
+        }
+    }
+
+    & button {
+        height: 100%;
+        padding: 0 15px;
+        background: none;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $bg_footer_color;
+
+        &:hover {
+            background: darken($color: $bg_footer_color, $amount: 10px);
+            cursor: pointer;
+        }
+
+        & svg {
+            transition: 0.3s;
+            width: 20px;
+            height: 20px;
+        }
+
+        &:active svg {
+            transform: scale(0.8);
+        }
+    }
+}
+
+.minus {
+    border-radius: 30px 0 0 30px;
+}
+
+.plus {
+    border-radius: 0 30px 30px 0;
+}
