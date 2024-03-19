@@ -1,37 +1,35 @@
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import styles from './InfoProduct.module.scss'
-
-import LoaderPage from '@/shared/ui/LoaderPage'
-
 import { Info, Price } from '@/entities/Product'
 import Images from '../Images/Images'
 import Colors from '../Colors/Colors'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Sizes from '../Sizes/Sizes'
 import CartController from '../CartController/CartController'
 
 const InfoProduct = () => {
     const { productDetail } = useAppSelector((state) => state.productReducer)
-    const [product, setProduct] = useState({ color: '', size: '' })
+    const [product, setProduct] = useState({
+        color: productDetail.colors[0].name,
+        size: productDetail.sizes[0],
+    })
+    console.log('infoproduct')
 
     const onChangeColor = (color: string) => {
-        setProduct((prev) => ({ ...prev, color }))
+        if (color !== product.color) {
+            setProduct((prev) => ({ ...prev, color }))
+        }
     }
 
     const onChangeSize = (size: string) => {
-        setProduct((prev) => ({ ...prev, size }))
-    }
-
-    useEffect(() => {
-        if (productDetail.id !== '') {
-            onChangeColor(productDetail.colors[0].name)
-            onChangeSize(productDetail.sizes[0])
+        if (size !== product.size) {
+            setProduct((prev) => ({ ...prev, size }))
         }
-    }, [productDetail])
+    }
 
     return (
         <div className={styles.cont}>
-            <Images />
+            <Images product={product} />
             <div className={styles.info}>
                 <Info data={productDetail} type="big" />
                 <Price data={productDetail} type="big" />

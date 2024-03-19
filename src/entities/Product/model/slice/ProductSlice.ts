@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ProductState } from '../types/ProductState'
 import { fetchProductDetail } from '../services/fetchProductDetail'
 
@@ -19,7 +19,7 @@ const initialState: ProductState = {
         colors: [],
     },
     error: null,
-    isLoading: false,
+    isLoading: true,
 }
 
 export const productSlice = createSlice({
@@ -43,6 +43,9 @@ export const productSlice = createSlice({
                 colors: [],
             }
         },
+        setIsLoding(state, action: PayloadAction<boolean>) {
+            state.isLoading = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProductDetail.pending, (state) => {
@@ -60,5 +63,5 @@ export const productSlice = createSlice({
     },
 })
 
-export const { clearProduct } = productSlice.actions
+export const { clearProduct, setIsLoding } = productSlice.actions
 export default productSlice.reducer

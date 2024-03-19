@@ -34,10 +34,34 @@
         border-radius: 20px;
         overflow: hidden;
 
+        outline: none;
+        transition: 0.3s;
+
         & img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: 0.3s;
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            & img {
+                transform: scale(1.1);
+            }
+        }
+
+        &:active {
+            transform: scale(0.8);
         }
     }
+}
+
+.active {
+    border: 2px solid $black_color;
+}
+
+.btn {
+    border: 2px solid transparent;
 }

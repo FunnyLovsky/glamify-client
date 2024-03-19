@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
-import { clearProduct } from '@/entities/Product'
+import { clearProduct, setIsLoding } from '@/entities/Product'
 import { fetchProductDetail } from '@/entities/Product/model/services/fetchProductDetail'
 import Conatiner from '@/shared/ui/Container'
 import LoaderPage from '@/shared/ui/LoaderPage'
@@ -28,6 +28,7 @@ const ProductDetail = () => {
     useEffect(() => {
         return () => {
             dispatch(clearProduct())
+            dispatch(setIsLoding(true))
         }
     }, [dispatch])
 
