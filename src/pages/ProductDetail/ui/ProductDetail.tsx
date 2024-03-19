@@ -42,7 +42,7 @@ const ProductDetail = () => {
 
     return (
         <>
-            <Breadcrumb />
+            <Breadcrumb product={productDetail} />
             <Conatiner>
                 <InfoProduct />
                 <ProductDescription />
