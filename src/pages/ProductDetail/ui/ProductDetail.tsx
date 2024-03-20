@@ -1,9 +1,9 @@
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { clearProduct, setIsLoding } from '@/entities/Product'
 import { fetchProductDetail } from '@/entities/Product/model/services/fetchProductDetail'
+import { ProductsList } from '@/features/ProductList'
 import Conatiner from '@/shared/ui/Container'
 import LoaderPage from '@/shared/ui/LoaderPage'
-import { ArrivalsList } from '@/widgets/ArrivalsList'
 import { Breadcrumb } from '@/widgets/Breadcrumb'
 import { InfoProduct } from '@/widgets/InfoProduct'
 import { ProductDescription } from '@/widgets/ProductDescription'
@@ -46,7 +46,7 @@ const ProductDetail = () => {
             <Conatiner>
                 <InfoProduct />
                 <ProductDescription />
-                <ArrivalsList />
+                <ProductsList title="Похожие товары" />
             </Conatiner>
         </>
     )
