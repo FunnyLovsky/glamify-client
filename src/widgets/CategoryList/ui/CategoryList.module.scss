@@ -1,0 +1,29 @@
+@import '@/app/styles/variables';
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.head {
+    width: 100%;
+}
+
+.cont_list {
+    width: calc(100% - 295px);
+}
+
+.list {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+    & a {
+        width: 30%;
+    }
+}

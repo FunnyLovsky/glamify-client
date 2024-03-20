@@ -1,18 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { IProduct, Services } from '@/entities/Product'
 
-export const useFetchProducts = (query: string) => {
+export const useFetchProducts = (query: string, limit: number = 4, page: number = 1) => {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const [error, setError] = useState<null | string>(null)
     const [products, setProducts] = useState<IProduct[]>([])
 
-    useEffect(() => {
-        fetchProducts(query)
-    }, [query])
-
-    async function fetchProducts(query: string) {
+    async function fetchProducts() {
         try {
-            const product = await Services.getProducts(`limit=4&${query}`)
+            const product = await Services.getProducts(`limit=${limit}&page=${page}&${query}`)
             setProducts(product.data)
             setIsLoading(false)
         } catch (error) {
@@ -20,6 +16,10 @@ export const useFetchProducts = (query: string) => {
             setError(error.message)
         }
     }
+
+    useEffect(() => {
+        fetchProducts()
+    }, [query])
 
     return { isLoading, error, products }
 }
