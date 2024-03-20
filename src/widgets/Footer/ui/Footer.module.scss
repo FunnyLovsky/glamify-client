@@ -1,0 +1,127 @@
+@import '@/app/styles/variables';
+
+.footer {
+    width: 100%;
+    padding: 50px 0 80px;
+    background: $bg_footer_color;
+}
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 35px;
+    gap: 50px;
+}
+
+.main {
+    width: 30%;
+
+    & h1 {
+        font-size: 35px;
+        font-weight: 900;
+        margin-bottom: 25px;
+    }
+
+    & p {
+        font-size: 14px;
+        color: $paragph_color;
+        line-height: 22px;
+        margin-bottom: 35px;
+    }
+}
+
+.social {
+    display: flex;
+    gap: 12px;
+
+    & a {
+        width: 30px;
+        height: 30px;
+        background: $bg_white_color;
+        border-radius: 50%;
+        border: 1px solid $stroke_social_icon;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $black_color;
+        transition: 0.3s;
+
+        & svg {
+            width: 16px;
+            height: 16px;
+            transition: 0.3s;
+        }
+
+        &:hover {
+            background: $black_color;
+            border-color: $black_color;
+
+            & svg {
+                color: $bg_white_color;
+            }
+        }
+    }
+}
+
+.inner {
+    width: 23.3%;
+
+    & h2 {
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 26px;
+    }
+
+    & a {
+        width: 100%;
+        display: inline-block;
+        font-size: 16px;
+        text-decoration: none;
+        color: $paragph_color;
+        font-weight: 400;
+        margin-bottom: 20px;
+        transition: 0.3s;
+
+        &:hover {
+            color: $black_color;
+            font-weight: bold;
+        }
+    }
+}
+
+.info {
+    border-top: 1px solid $stroke_color;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.reserved {
+    font-size: 14px;
+    color: $paragph_color;
+}
+
+.cards {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.card {
+    width: 46px;
+    height: 30px;
+    background: $bg_white_color;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & svg {
+        height: 12px;
+        width: 30px;
+    }
+}

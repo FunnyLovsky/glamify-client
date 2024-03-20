@@ -4,6 +4,7 @@ import { Header } from '@/widgets/Header'
 import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import styles from './NavLayout.module.scss'
+import { Footer } from '@/widgets/Footer'
 
 const NavLayout = () => {
     console.log('navlayou')
@@ -21,6 +22,7 @@ const NavLayout = () => {
             <main className={styles.main}>
                 <Outlet />
             </main>
+            <Footer />
         </>
     )
 }
