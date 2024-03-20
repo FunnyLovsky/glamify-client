@@ -1,19 +1,21 @@
-import { Product } from '@/entities/Product'
+import { IProductDetail, Product, useFetchProducts } from '@/entities/Product'
 import styles from './ProductList.module.scss'
 import { FC } from 'react'
 import { RoutesName } from '@/app/providers/router'
 import AppLink from '@/shared/ui/AppLink'
-import { useFetchProducts } from '../hooks/useFectcProducts'
 import Conatiner from '@/shared/ui/Container'
 
 interface IProps {
     title: string
     query?: string
     catalog?: RoutesName | null
+    productDetail?: IProductDetail | null
 }
 
-const ProductList: FC<IProps> = ({ title, query = '', catalog = null }) => {
-    const { isLoading, error, products } = useFetchProducts(query)
+const ProductList: FC<IProps> = ({ title, query = '', catalog = null, productDetail = null }) => {
+    const params = productDetail ? `category=${productDetail.category}&${query}` : query
+
+    const { isLoading, error, products } = useFetchProducts(params)
 
     const renderContent = () => {
         if (isLoading) {
@@ -39,9 +41,11 @@ const ProductList: FC<IProps> = ({ title, query = '', catalog = null }) => {
                 <h2 className={styles.title}>{title}</h2>
                 <div className={styles.list}>{renderContent()}</div>
                 {catalog && (
-                    <AppLink href={catalog} type="button">
-                        Посмотреть все
-                    </AppLink>
+                    <div className={styles.link}>
+                        <AppLink href={catalog} type="button">
+                            Посмотреть все
+                        </AppLink>
+                    </div>
                 )}
             </div>
         </Conatiner>

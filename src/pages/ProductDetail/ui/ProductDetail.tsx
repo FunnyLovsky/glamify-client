@@ -46,7 +46,7 @@ const ProductDetail = () => {
             <Conatiner>
                 <InfoProduct />
                 <ProductDescription />
-                <ProductsList title="Похожие товары" />
+                <ProductsList title="Похожие товары" productDetail={productDetail} />
             </Conatiner>
         </>
     )
