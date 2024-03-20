@@ -3,15 +3,17 @@ import styles from './Sizes.module.scss'
 import { FC } from 'react'
 import AppButton from '@/shared/ui/AppButton'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
+import { ICartProduct } from '@/entities/Cart'
 
 type Product = { color: string; size: string }
 
 interface IProps {
     product: Product
     onChange: (size: string) => void
+    productInCart: null | ICartProduct
 }
 
-const Sizes: FC<IProps> = ({ onChange, product }) => {
+const Sizes: FC<IProps> = ({ onChange, product, productInCart }) => {
     const { productDetail } = useAppSelector((state) => state.productReducer)
     const { isLoading } = useAppSelector((state) => state.cartReducer)
     const { isLoading: authLoading } = useAppSelector((state) => state.authReducer)

@@ -9,6 +9,7 @@ import CartController from '../CartController/CartController'
 
 const InfoProduct = () => {
     const { productDetail } = useAppSelector((state) => state.productReducer)
+    const { cartProducts } = useAppSelector((state) => state.cartReducer)
     const [product, setProduct] = useState({
         color: productDetail.colors[0].name,
         size: productDetail.sizes[0],
@@ -27,6 +28,8 @@ const InfoProduct = () => {
         }
     }
 
+    const productInCart = cartProducts.find((product) => product.id == productDetail.id)
+
     return (
         <div className={styles.cont}>
             <Images product={product} />
@@ -35,9 +38,9 @@ const InfoProduct = () => {
                 <Price data={productDetail} type="big" />
                 <p className={styles.description}>{productDetail.description}</p>
 
-                <Colors product={product} onChange={onChangeColor} />
-                <Sizes product={product} onChange={onChangeSize} />
-                <CartController product={product} />
+                <Colors product={product} onChange={onChangeColor} productInCart={productInCart} />
+                <Sizes product={product} onChange={onChangeSize} productInCart={productInCart} />
+                <CartController product={product} productInCart={productInCart} />
             </div>
         </div>
     )

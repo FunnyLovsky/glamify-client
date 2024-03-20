@@ -5,18 +5,18 @@ import { AddProductCart } from '@/features/AddProductCart'
 import { DeleteProductCart } from '@/features/DeleteProductCart'
 import { ChangeCountProductCart } from '@/features/ChangeCountProductCart'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
+import { ICartProduct } from '@/entities/Cart'
 
 type Product = { color: string; size: string }
 
 interface IProps {
     product: Product
+    productInCart: null | ICartProduct
 }
 
-const CartController: FC<IProps> = ({ product }) => {
+const CartController: FC<IProps> = ({ product, productInCart }) => {
     const { isLoading, error } = useAppSelector((state) => state.cartReducer)
     const { isLoading: authLoading } = useAppSelector((state) => state.authReducer)
-    const { productDetail } = useAppSelector((state) => state.productReducer)
-    const { cartProducts } = useAppSelector((state) => state.cartReducer)
 
     if (isLoading || authLoading) {
         return (
@@ -30,14 +30,12 @@ const CartController: FC<IProps> = ({ product }) => {
         return <h1>{error}</h1>
     }
 
-    const filterProducts = cartProducts.find((product) => product.id == productDetail.id)
-
     return (
         <div className={styles.cont}>
-            {filterProducts ? (
+            {productInCart ? (
                 <>
-                    <ChangeCountProductCart productCart={filterProducts} />
-                    <DeleteProductCart productId={filterProducts.id} type="button" />
+                    <ChangeCountProductCart productCart={productInCart} />
+                    <DeleteProductCart productId={productInCart.id} type="button" />
                 </>
             ) : (
                 <AddProductCart product={product} />
