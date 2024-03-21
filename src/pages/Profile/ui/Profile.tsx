@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 const Profile = () => {
     useEffect(() => {
         document.title = 'GLAMIFY - Ваш профиль на сайте'
+        window.scrollTo(0, 0)
     }, [])
 
     return (

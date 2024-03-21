@@ -8,6 +8,7 @@ import { RoutesName } from '@/app/providers/router'
 const Main = () => {
     useEffect(() => {
         document.title = 'GLAMIFY - Модные тренды в мире одежды'
+        window.scrollTo(0, 0)
     }, [])
 
     return (

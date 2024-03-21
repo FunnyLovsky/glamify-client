@@ -16,6 +16,7 @@ const ProductDetail = () => {
     const { productDetail, isLoading, error } = useAppSelector((state) => state.productReducer)
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         dispatch(fetchProductDetail({ productURL }))
     }, [dispatch, productURL])
 

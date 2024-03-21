@@ -9,6 +9,7 @@ const Category = () => {
 
     useEffect(() => {
         document.title = routeTitles[location.pathname]
+        window.scrollTo(0, 0)
     }, [location.pathname])
 
     return (

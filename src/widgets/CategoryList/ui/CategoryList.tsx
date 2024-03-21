@@ -7,6 +7,7 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { createQuery } from '../lib/createQuery'
 import { createArray } from '@/shared/lib/createArray'
+import { FilterProducts } from '@/features/FliterProducts'
 
 const CategoryList = () => {
     const { pathname, search } = useLocation()
@@ -34,7 +35,7 @@ const CategoryList = () => {
     return (
         <Container>
             <div className={styles.cont}>
-                <div className={styles.filters}>Filters</div>
+                <FilterProducts />
                 <div className={styles.cont_list}>
                     <div className={styles.head}>
                         <h3>{routePaths[pathname]}</h3>

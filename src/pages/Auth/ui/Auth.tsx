@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 const Auth = () => {
     useEffect(() => {
         document.title = 'GLAMIFY - Войти или зарегистрироваться'
+        window.scrollTo(0, 0)
     }, [])
 
     return (
