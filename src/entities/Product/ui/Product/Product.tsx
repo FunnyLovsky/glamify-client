@@ -9,10 +9,10 @@ import Price from '../Price/Price'
 
 interface IProps {
     data: IProduct
-    catalog: RoutesName | null
+    catalog?: RoutesName | null
 }
 
-const Product: FC<IProps> = ({ data, catalog }) => {
+const Product: FC<IProps> = ({ data, catalog = null }) => {
     const path = catalog ? catalog : RoutesName.SHOP
 
     return (
