@@ -2,10 +2,11 @@ import Container from '@/shared/ui/Container'
 import styles from './CategoryList.module.scss'
 import { useLocation } from 'react-router-dom'
 import { routePaths } from '@/widgets/Breadcrumb'
-import { Product, fetchProductList, setLoding } from '@/entities/Product'
+import { Loader, Product, fetchProductList, setLoding } from '@/entities/Product'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { createQuery } from '../lib/createQuery'
+import { createArray } from '@/shared/lib/createArray'
 
 const CategoryList = () => {
     const { pathname, search } = useLocation()
@@ -24,7 +25,7 @@ const CategoryList = () => {
         return () => {
             dispatch(setLoding(true))
         }
-    }, [])
+    }, [dispatch])
 
     if (error) {
         return <Container>{error}</Container>
@@ -40,11 +41,11 @@ const CategoryList = () => {
                         <p>Показано 1-9 из {totalCount} товаров</p>
                     </div>
                     <div className={styles.list}>
-                        {!isLoading ? (
-                            products.map((product) => <Product data={product} key={product.url} />)
-                        ) : (
-                            <h2>Loading...</h2>
-                        )}
+                        {!isLoading
+                            ? products.map((product) => (
+                                  <Product data={product} key={product.url} catalog={pathname} />
+                              ))
+                            : createArray(limit).map((item) => <Loader key={item} />)}
                     </div>
                 </div>
             </div>

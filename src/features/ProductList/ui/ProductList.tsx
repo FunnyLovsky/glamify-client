@@ -1,9 +1,10 @@
-import { IProductDetail, Product, useFetchProducts } from '@/entities/Product'
+import { IProductDetail, Loader, Product, useFetchProducts } from '@/entities/Product'
 import styles from './ProductList.module.scss'
 import { FC } from 'react'
 import { RoutesName } from '@/app/providers/router'
 import AppLink from '@/shared/ui/AppLink'
 import Conatiner from '@/shared/ui/Container'
+import { createArray } from '@/shared/lib/createArray'
 
 interface IProps {
     title: string
@@ -19,7 +20,13 @@ const ProductList: FC<IProps> = ({ title, query = '', catalog = null, productDet
 
     const renderContent = () => {
         if (isLoading) {
-            return <h1>Loading...</h1>
+            return (
+                <>
+                    {createArray(4).map((item) => (
+                        <Loader key={item} />
+                    ))}
+                </>
+            )
         }
 
         if (error) {

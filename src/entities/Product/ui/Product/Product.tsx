@@ -9,7 +9,7 @@ import Price from '../Price/Price'
 
 interface IProps {
     data: IProduct
-    catalog?: RoutesName | null
+    catalog?: RoutesName | null | string
 }
 
 const Product: FC<IProps> = ({ data, catalog = null }) => {
