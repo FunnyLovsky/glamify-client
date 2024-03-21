@@ -6,22 +6,18 @@ import { mapPathName } from '../lib/mapPathName'
 import { FC } from 'react'
 import { RoutesName } from '@/app/providers/router'
 import { IProductDetail } from '@/entities/Product'
+import { getProductCategory } from '../lib/getProductCategory'
 
 interface IProps {
     product?: IProductDetail | null
 }
 
 const Breadcrumb: FC<IProps> = ({ product = null }) => {
-    const location = useLocation()
-    const paths = mapPathName(location.pathname)
+    const { pathname, search } = useLocation()
+    const paths = mapPathName(pathname, search)
 
     if (product) {
-        const { gender, category } = product
-        const pathsProduct = [
-            { to: `${RoutesName.SHOP}?gender=${gender}`, title: gender },
-            { to: `${RoutesName.SHOP}?category=${category}`, title: category },
-        ]
-        paths.push(...pathsProduct)
+        paths.push(...getProductCategory(product, pathname))
     }
 
     return (

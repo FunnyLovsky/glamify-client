@@ -38,7 +38,10 @@ const CategoryList = () => {
                 <div className={styles.cont_list}>
                     <div className={styles.head}>
                         <h3>{routePaths[pathname]}</h3>
-                        <p>Показано 1-9 из {totalCount} товаров</p>
+                        <div className={styles.sort}>
+                            <p>Показано 1-9 из {totalCount} товаров</p>
+                            <p>Сортировать:</p>
+                        </div>
                     </div>
                     <div className={styles.list}>
                         {!isLoading

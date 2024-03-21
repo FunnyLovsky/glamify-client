@@ -36,17 +36,19 @@ const ProductDetail = () => {
         return <h1>{error}</h1>
     }
 
-    if (isLoading) {
-        return <LoaderPage />
-    }
-
     return (
         <>
             <Breadcrumb product={productDetail} />
             <Conatiner>
-                <InfoProduct />
-                <ProductDescription />
-                <ProductsList title="Похожие товары" productDetail={productDetail} />
+                {isLoading ? (
+                    <LoaderPage />
+                ) : (
+                    <>
+                        <InfoProduct />
+                        <ProductDescription />
+                        <ProductsList title="Похожие товары" productDetail={productDetail} />
+                    </>
+                )}
             </Conatiner>
         </>
     )
