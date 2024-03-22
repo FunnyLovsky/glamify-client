@@ -12,15 +12,15 @@ import { FilterProducts } from '@/features/FliterProducts'
 const CategoryList = () => {
     const { pathname, search } = useLocation()
     const dispatch = useAppDispatch()
-    const { error, isLoading, products, totalCount, limit, page } = useAppSelector(
+    const { error, isLoading, products, totalCount, limit, page, query } = useAppSelector(
         (state) => state.productListReducer
     )
     useEffect(() => {
-        const query = createQuery(pathname, search)
-        console.log(query)
+        const queryReq = createQuery(pathname, search) + query
+        console.log(queryReq)
 
-        dispatch(fetchProductList({ query, limit, page }))
-    }, [limit, page, dispatch, pathname, search])
+        dispatch(fetchProductList({ query: queryReq, limit, page }))
+    }, [limit, page, dispatch, pathname, search, query])
 
     useEffect(() => {
         return () => {
@@ -40,7 +40,9 @@ const CategoryList = () => {
                     <div className={styles.head}>
                         <h3>{routePaths[pathname]}</h3>
                         <div className={styles.sort}>
-                            <p>Показано 1-9 из {totalCount} товаров</p>
+                            <p>
+                                Показано 1-{totalCount > 9 ? 9 : totalCount} из {totalCount} товаров
+                            </p>
                             <p>Сортировать:</p>
                         </div>
                     </div>

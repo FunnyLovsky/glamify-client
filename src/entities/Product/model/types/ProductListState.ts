@@ -7,4 +7,5 @@ export interface ProductListState {
     totalCount: number
     page: number
     limit: number
+    query: string
 }

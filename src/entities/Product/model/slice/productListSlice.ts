@@ -9,6 +9,7 @@ const initialState: ProductListState = {
     limit: 9,
     page: 1,
     totalCount: 0,
+    query: '',
 }
 
 export const productListSlice = createSlice({
@@ -21,6 +22,9 @@ export const productListSlice = createSlice({
         setLoding(state, action: PayloadAction<boolean>) {
             state.isLoading = action.payload
         },
+        setQuery(state, action: PayloadAction<string>) {
+            state.query = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(fetchProductList.pending, (state) => {
@@ -30,9 +34,7 @@ export const productListSlice = createSlice({
         builder.addCase(fetchProductList.fulfilled, (state, action) => {
             state.isLoading = false
             state.products = action.payload.products
-            if (state.totalCount === 0) {
-                state.totalCount = action.payload.totalCount
-            }
+            state.totalCount = action.payload.totalCount
         })
         builder.addCase(fetchProductList.rejected, (state, action) => {
             state.isLoading = false
@@ -41,5 +43,5 @@ export const productListSlice = createSlice({
     },
 })
 
-export const { setPage, setLoding } = productListSlice.actions
+export const { setPage, setLoding, setQuery } = productListSlice.actions
 export default productListSlice.reducer

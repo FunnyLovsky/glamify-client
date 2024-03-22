@@ -4,7 +4,7 @@ import { Services } from '../../api/service'
 export const fetchProductList = createAppAsyncThunk(
     'productList/fetchProductList',
     async (
-        { query, limit, page }: { query: string; limit: number; page: number },
+        { limit, page, query }: { limit: number; page: number; query: string },
         { rejectWithValue }
     ) => {
         try {
