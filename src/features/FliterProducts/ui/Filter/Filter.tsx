@@ -12,9 +12,8 @@ const Filter: FC<IProps> = ({ title, children }) => {
         <div className={styles.filter}>
             <div className={styles.head}>
                 <h2>{title}</h2>
-                <button>
-                    <ARROW />
-                </button>
+
+                <ARROW />
             </div>
             {children}
         </div>

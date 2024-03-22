@@ -2,7 +2,7 @@ import Container from '@/shared/ui/Container'
 import styles from './CategoryList.module.scss'
 import { useLocation } from 'react-router-dom'
 import { routePaths } from '@/widgets/Breadcrumb'
-import { Loader, Product, fetchProductList, setLoding } from '@/entities/Product'
+import { Loader, Product, fetchProductList, setLoding, setQuery } from '@/entities/Product'
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { createQuery } from '../lib/createQuery'
@@ -25,6 +25,7 @@ const CategoryList = () => {
     useEffect(() => {
         return () => {
             dispatch(setLoding(true))
+            dispatch(setQuery(''))
         }
     }, [dispatch])
 

@@ -1,38 +1,38 @@
 import styles from './FilterProducts.module.scss'
-import { useLocation } from 'react-router-dom'
 import AppButton from '@/shared/ui/AppButton'
 import { useState } from 'react'
 import { Filters } from '../../types/Filters'
-import Filter from '../Filter/Filter'
-import Checkbox from '../Checkbox/Checkbox'
-import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
+import { useAppDispatch } from '@/app/providers/StoreProvider/lib/hooks'
 import { setQuery } from '@/entities/Product'
+import GenderFliter from '../GenderFilter/GenderFilter'
+import CategoryFliter from '../CategoryFilter/CategoryFilter'
+import SizeFilter from '../SizeFilter/SizeFilter'
 
 const FilterProducts = () => {
-    const [filters, setFilters] = useState<Filters>({} as Filters)
+    const [filters, setFilters] = useState<Filters>({
+        category: '',
+        color: [],
+        gender: '',
+        price: '',
+        size: [],
+        style: [],
+    })
     const dispatch = useAppDispatch()
 
-    const onChangeGender = (gender: 'Men' | 'Women') => {
-        if (gender == filters.gender) {
-            setFilters((prev) => ({ ...prev, gender: '' }))
-        } else {
-            setFilters((prev) => ({ ...prev, gender }))
-        }
-    }
-
-    const onChangeCategory = (category: 'T-shirts' | 'Shirts') => {
-        if (category == filters.category) {
-            setFilters((prev) => ({ ...prev, category: '' }))
-        } else {
-            setFilters((prev) => ({ ...prev, category }))
-        }
-    }
-
     const onCreateQueryReq = () => {
-        let query = ''
+        let query = '&'
+
         for (const key in filters) {
-            if (filters[key as keyof Filters]) {
-                query += `${key}=${filters[key as keyof Filters]}&`
+            const value = filters[key as keyof Filters]
+
+            if (Array.isArray(value)) {
+                if (value.length == 0) continue
+
+                value.forEach((item) => (query += `${key}=${item}&`))
+            } else {
+                if (value == '') continue
+
+                query += `${key}=${value}&`
             }
         }
 
@@ -50,31 +50,10 @@ const FilterProducts = () => {
                 <h2 className={styles.title}>Фильтры</h2>
             </div>
 
-            <Filter title="Пол">
-                <Checkbox
-                    title="Мужчинам"
-                    checked={filters.gender == 'Men'}
-                    onChange={() => onChangeGender('Men')}
-                />
-                <Checkbox
-                    title="Женщинам"
-                    checked={filters.gender == 'Women'}
-                    onChange={() => onChangeGender('Women')}
-                />
-            </Filter>
+            <GenderFliter filters={filters} onChange={setFilters} />
+            <CategoryFliter filters={filters} onChange={setFilters} />
 
-            <Filter title="Категории">
-                <Checkbox
-                    title="Футблоки"
-                    checked={filters.category == 'T-shirts'}
-                    onChange={() => onChangeCategory('T-shirts')}
-                />
-                <Checkbox
-                    title="Рубашки"
-                    checked={filters.category == 'Shirts'}
-                    onChange={() => onChangeCategory('Shirts')}
-                />
-            </Filter>
+            <SizeFilter filters={filters} onChange={setFilters} />
 
             <AppButton variant="black" type="big" onClick={onCreateQueryReq}>
                 Применить
