@@ -1,10 +1,9 @@
-// import styles from './FilterProducts.module.scss'
+import styles from './SizeFilter.module.scss'
 import { FC } from 'react'
 import { Filters } from '../../types/Filters'
 import Filter from '../Filter/Filter'
 import AppButton from '@/shared/ui/AppButton'
 import { sizes } from '../../lib/sizes'
-import { Sizes } from '../../types/Sizes'
 
 interface IProps {
     filters: Filters
@@ -26,15 +25,17 @@ const SizeFilter: FC<IProps> = ({ filters, onChange }) => {
 
     return (
         <Filter title="Размеры">
-            {sizes.map((size) => (
-                <AppButton
-                    variant={findSize(size) ? 'black' : 'white'}
-                    key={size}
-                    onClick={() => onChangeCategory(size)}
-                >
-                    {size}
-                </AppButton>
-            ))}
+            <div className={styles.sizes}>
+                {sizes.map((size) => (
+                    <AppButton
+                        variant={findSize(size) ? 'black' : 'white'}
+                        key={size}
+                        onClick={() => onChangeCategory(size)}
+                    >
+                        {size}
+                    </AppButton>
+                ))}
+            </div>
         </Filter>
     )
 }

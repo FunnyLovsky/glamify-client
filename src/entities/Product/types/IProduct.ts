@@ -23,8 +23,8 @@ export interface IProductDetail {
     colors: Colors[]
 }
 
-interface Colors {
+export interface Colors {
     name: string
     code: string
-    images: string[]
+    images?: string[]
 }

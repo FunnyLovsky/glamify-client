@@ -1,0 +1,19 @@
+@import '@/app/styles/variables';
+
+.color_item {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+    outline: 2px solid $stroke_color;
+
+    &:hover {
+        outline: 2px solid $paragph_color;
+        cursor: pointer;
+    }
+}

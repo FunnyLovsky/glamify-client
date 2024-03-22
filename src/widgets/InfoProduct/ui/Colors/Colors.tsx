@@ -1,9 +1,9 @@
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import styles from './Colors.module.scss'
-import CHECKED from '@/shared/assets/elements/checked.svg'
 import { FC } from 'react'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
 import { ICartProduct } from '@/entities/Cart'
+import { ColorBtn } from '@/entities/Product'
 
 type Product = { color: string; size: string }
 
@@ -40,14 +40,12 @@ const Colors: FC<IProps> = ({ onChange, product, productInCart }) => {
             <>
                 {!productInCart
                     ? productDetail.colors.map((color) => (
-                          <button
-                              style={{ background: color.code }}
+                          <ColorBtn
+                              check={product.color == color.name}
                               key={color.code}
-                              className={styles.color_item}
-                              onClick={() => onChange(color.name)}
-                          >
-                              {product.color == color.name && <CHECKED />}
-                          </button>
+                              color={color}
+                              onChange={onChange}
+                          />
                       ))
                     : setSelectColor()}
             </>

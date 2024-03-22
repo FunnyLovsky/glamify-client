@@ -7,6 +7,7 @@ import { setQuery } from '@/entities/Product'
 import GenderFliter from '../GenderFilter/GenderFilter'
 import CategoryFliter from '../CategoryFilter/CategoryFilter'
 import SizeFilter from '../SizeFilter/SizeFilter'
+import ColorFilter from '../ColorFilter/ColorFilter'
 
 const FilterProducts = () => {
     const [filters, setFilters] = useState<Filters>({
@@ -52,7 +53,7 @@ const FilterProducts = () => {
 
             <GenderFliter filters={filters} onChange={setFilters} />
             <CategoryFliter filters={filters} onChange={setFilters} />
-
+            <ColorFilter filters={filters} onChange={setFilters} />
             <SizeFilter filters={filters} onChange={setFilters} />
 
             <AppButton variant="black" type="big" onClick={onCreateQueryReq}>
