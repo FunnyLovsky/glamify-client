@@ -6,6 +6,10 @@
     padding: 20px 24px;
     border: 1px solid $stroke_color;
     border-radius: 20px;
+
+    & span {
+        display: block;
+    }
 }
 
 .title {

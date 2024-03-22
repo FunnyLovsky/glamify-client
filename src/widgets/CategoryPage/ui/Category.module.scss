@@ -1,0 +1,58 @@
+@import '@/app/styles/variables';
+
+.cont {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    margin: 24px 0 80px;
+}
+
+.filters {
+    width: 295px;
+    height: 100px;
+    background: grey;
+}
+
+.head {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & h3 {
+        font-size: 32px;
+        font-weight: bold;
+    }
+}
+
+.sort {
+    display: flex;
+    gap: 12px;
+    & p {
+        font-size: 16px;
+    }
+}
+
+.cont_list {
+    width: calc(100% - 295px);
+}
+
+.list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px 0 32px;
+    border-bottom: 1px solid $stroke_color;
+
+    gap: 36px 20px;
+
+    & a {
+        width: 31.8%;
+    }
+
+    & span {
+        width: 31.8%;
+    }
+}

@@ -1,8 +1,8 @@
 import { Breadcrumb } from '@/widgets/Breadcrumb'
-import { CategoryList } from '@/widgets/CategoryList'
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { routeTitles } from '../const/routeTitles'
+import { CategoryPage } from '@/widgets/CategoryPage'
 
 const Category = () => {
     const location = useLocation()
@@ -15,7 +15,7 @@ const Category = () => {
     return (
         <>
             <Breadcrumb />
-            <CategoryList />
+            <CategoryPage />
         </>
     )
 }
