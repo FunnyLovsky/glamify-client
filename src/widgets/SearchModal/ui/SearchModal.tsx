@@ -3,9 +3,11 @@ import styles from './SearchModal.module.scss'
 import AppInput from '@/shared/ui/AppInput'
 import Conatiner from '@/shared/ui/Container'
 import Modal from '@/shared/ui/Modal'
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SEACRH from '@/shared/assets/icons/search.svg'
+import { useFetchProducts } from '@/entities/Product'
+import { RoutesName } from '@/app/providers/router'
 
 interface IProps {
     onClose: () => void
@@ -13,9 +15,15 @@ interface IProps {
 
 const SearchModal: FC<IProps> = ({ onClose }) => {
     const input = useRef<HTMLInputElement>()
+    const [query, setQuery] = useState('')
+    const { isLoading, products, error } = useFetchProducts(query)
 
     const closeModal = ({ key }: KeyboardEvent) => {
         if (key === 'Escape') onClose()
+    }
+
+    const onSearchProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuery(`name=${e.target.value}`)
     }
 
     useEffect(() => {
@@ -36,18 +44,20 @@ const SearchModal: FC<IProps> = ({ onClose }) => {
                             placeholder="Поиск товаров..."
                             type="text"
                             icon="search"
-                            onFocus={() => console.log('search')}
+                            onChange={onSearchProducts}
                             ref={input}
                         />
                         <div className={styles.results}>
-                            <Link to={'/'} onClick={onClose}>
-                                <SEACRH />
-                                <h3>T-Shirts</h3>
-                            </Link>
-                            <Link to={'/'} onClick={onClose}>
-                                <SEACRH />
-                                <h3>T-Shirts</h3>
-                            </Link>
+                            {products.map((item) => (
+                                <Link
+                                    to={`${RoutesName.SHOP}/${item.url}`}
+                                    onClick={onClose}
+                                    key={item.url}
+                                >
+                                    <SEACRH />
+                                    <h3>{item.name}</h3>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </div>
