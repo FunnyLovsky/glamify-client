@@ -4,11 +4,13 @@ import { fetchProductDetail } from '@/entities/Product/model/services/fetchProdu
 import { ProductsList } from '@/features/ProductList'
 import Conatiner from '@/shared/ui/Container'
 import LoaderPage from '@/shared/ui/LoaderPage'
+import NotFound from '@/shared/ui/NotFound'
 import { Breadcrumb } from '@/widgets/Breadcrumb'
 import { InfoProduct } from '@/widgets/InfoProduct'
 import { ProductDescription } from '@/widgets/ProductDescription'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import SEARCH from '@/shared/assets/icons/search.svg'
 
 const ProductDetail = () => {
     const { productURL } = useParams()
@@ -34,7 +36,17 @@ const ProductDetail = () => {
     }, [dispatch])
 
     if (error) {
-        return <h1>{error}</h1>
+        return (
+            <Conatiner>
+                <Breadcrumb />
+                <NotFound
+                    title={error}
+                    subtitle="Пожалуйста, проверьте правильность запроса или вернитесь к списку товаров"
+                    icon={SEARCH}
+                    type="big"
+                />
+            </Conatiner>
+        )
     }
 
     return (

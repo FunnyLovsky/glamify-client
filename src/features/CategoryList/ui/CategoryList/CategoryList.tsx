@@ -4,6 +4,8 @@ import { routePaths } from '@/widgets/Breadcrumb'
 import { Loader, Product } from '@/entities/Product'
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { createArray } from '@/shared/lib/createArray'
+import NotFound from '@/shared/ui/NotFound'
+import SEARCH from '@/shared/assets/icons/search.svg'
 
 const CategoryList = () => {
     const { pathname } = useLocation()
@@ -12,7 +14,14 @@ const CategoryList = () => {
     )
 
     const renderList = () => {
-        if (error) return <h2>{error}</h2>
+        if (error)
+            return (
+                <NotFound
+                    title={error}
+                    subtitle="Сбросьте фильтры или вернитесь на главную"
+                    icon={SEARCH}
+                />
+            )
 
         return (
             <div className={styles.list}>

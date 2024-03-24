@@ -3,8 +3,9 @@ import styles from './CartProduct.module.scss'
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import Product from '../Product/Product'
 import LoaderPage from '@/shared/ui/LoaderPage'
-import CartEmpty from '../CartEmpty/CartEmpty'
 import { Checkout } from '@/features/Checkout'
+import NotFound from '@/shared/ui/NotFound'
+import CART from '@/shared/assets/icons/cart.svg'
 
 const CartProduct = () => {
     const { cartProducts } = useAppSelector((state) => state.cartReducer)
@@ -16,27 +17,32 @@ const CartProduct = () => {
         }
 
         if (cartProducts.length <= 0) {
-            return <CartEmpty />
+            return (
+                <NotFound
+                    title="В корзине пока пусто"
+                    subtitle="Загляните на главную, чтобы выбрать товары или найдите нужное в поиске"
+                    icon={CART}
+                    type="big"
+                />
+            )
         }
 
         return (
-            <div className={styles.cont}>
-                <div className={styles.products}>
-                    {cartProducts.map((product) => (
-                        <Product product={product} key={product.name} />
-                    ))}
+            <>
+                <h1 className={styles.title}>Ваша корзина</h1>
+                <div className={styles.cont}>
+                    <div className={styles.products}>
+                        {cartProducts.map((product) => (
+                            <Product product={product} key={product.name} />
+                        ))}
+                    </div>
+                    <Checkout />
                 </div>
-                <Checkout />
-            </div>
+            </>
         )
     }
 
-    return (
-        <Container>
-            <h1 className={styles.title}>Ваша корзина</h1>
-            {renderContent()}
-        </Container>
-    )
+    return <Container>{renderContent()}</Container>
 }
 
 export default CartProduct
