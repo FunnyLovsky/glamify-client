@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, forwardRef } from 'react'
 import styles from './AppInput.module.scss'
 import SEACRH from '@/shared/assets/icons/search.svg'
 import EMAIL from '@/shared/assets/icons/email_2.svg'
@@ -11,24 +11,35 @@ interface IProps {
     icon: 'search' | 'promo' | 'email' | 'password' | 'user'
     value?: string
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
+    onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void
+
+    ref?: React.ForwardedRef<HTMLInputElement>
+}
+const icons = {
+    search: SEACRH,
+    promo: SEACRH,
+    email: EMAIL,
+    password: PASSWORD,
+    user: USER,
 }
 
-const AppInput: FC<IProps> = ({ placeholder, type = 'text', icon, onChange }) => {
-    const icons = {
-        search: SEACRH,
-        promo: SEACRH,
-        email: EMAIL,
-        password: PASSWORD,
-        user: USER,
-    }
-
+const AppInput: FC<IProps> = forwardRef<HTMLInputElement, IProps>(function AppInput(props, ref) {
+    const { icon, type, onChange, onFocus, placeholder, value } = props
     const Icon = icons[icon]
+
     return (
         <div className={styles.input}>
             <Icon />
-            <input type={type} placeholder={placeholder} onChange={onChange} />
+            <input
+                value={value}
+                ref={ref}
+                type={type}
+                placeholder={placeholder}
+                onChange={onChange}
+                onFocus={onFocus}
+            />
         </div>
     )
-}
+})
 
 export default AppInput

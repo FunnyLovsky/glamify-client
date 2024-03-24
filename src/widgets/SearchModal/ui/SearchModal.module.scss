@@ -1,0 +1,27 @@
+@import '@/app/styles/variables';
+
+.cont {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
+}
+
+.search {
+    width: 50%;
+    padding: 15px;
+    background: $bg_white_color;
+
+    border-radius: 25px;
+}
+
+.results {
+    margin: 20px 0 10px;
+    & a {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid $stroke_color;
+    }
+}

@@ -9,5 +9,6 @@ export enum RoutesName {
     AUTH = '/auth',
     PROFILE = '/profile',
     CATEGORY = '/:category',
+    SEARCH = '/search',
     UNDEFINED = '*',
 }

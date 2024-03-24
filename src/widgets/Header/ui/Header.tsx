@@ -4,14 +4,27 @@ import styles from './Header.module.scss'
 import Conatiner from '@/shared/ui/Container'
 import AppLink from '@/shared/ui/AppLink'
 import AppInput from '@/shared/ui/AppInput'
-import AppIconLink from '@/shared/ui/AppIconLink'
-import CART from '@/shared/assets/icons/cart.svg'
 import { ProfileIcon } from '@/entities/User'
 import { CartIcon } from '@/entities/Cart'
+import { useState } from 'react'
+import { SearchModal } from '@/widgets/SearchModal'
 
 const Header = () => {
+    const [search, setSearch] = useState(false)
+
+    const onOpenSearch = () => {
+        document.body.style.paddingRight = '18px'
+        document.body.style.overflow = 'hidden'
+        setSearch(true)
+    }
+
+    const onCloseSearch = () => {
+        document.body.style.overflow = 'auto'
+        document.body.style.paddingRight = ''
+        setSearch(false)
+    }
     return (
-        <header className={styles.header}>
+        <header className={styles.header} style={{ paddingRight: search ? '18px' : '' }}>
             <Conatiner>
                 <nav className={styles.nav}>
                     <NavLink to={RoutesName.MAIN} className={styles.avatar}>
@@ -33,15 +46,20 @@ const Header = () => {
                         </AppLink>
                     </div>
 
-                    <AppInput placeholder="Поиск товаров..." type="text" icon="search" />
+                    <AppInput
+                        placeholder="Поиск товаров..."
+                        type="text"
+                        icon="search"
+                        onFocus={onOpenSearch}
+                    />
 
                     <div className={styles.cont}>
                         <CartIcon />
-
                         <ProfileIcon />
                     </div>
                 </nav>
             </Conatiner>
+            {search && <SearchModal onClose={onCloseSearch} />}
         </header>
     )
 }
