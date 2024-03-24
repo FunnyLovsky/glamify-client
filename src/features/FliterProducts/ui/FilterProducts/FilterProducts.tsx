@@ -10,6 +10,7 @@ import SizeFilter from '../SizeFilter/SizeFilter'
 import ColorFilter from '../ColorFilter/ColorFilter'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
 import { createQueryRequest } from '../../lib/createQueryRequest'
+import DELETE from '@/shared/assets/icons/delete.svg'
 
 const FilterProducts = () => {
     const { isLoading } = useAppSelector((state) => state.productListReducer)
@@ -50,9 +51,7 @@ const FilterProducts = () => {
         <div className={styles.filters}>
             <div className={styles.head}>
                 <h2 className={styles.title}>Фильтры</h2>
-                <AppButton variant="delete" onClick={resetFilters}>
-                    Сброс
-                </AppButton>
+                {filters.isApply && <DELETE onClick={resetFilters} />}
             </div>
 
             <GenderFliter filters={filters} onChange={setFilters} />
