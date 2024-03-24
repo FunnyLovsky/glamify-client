@@ -9,10 +9,11 @@ import CategoryFliter from '../CategoryFilter/CategoryFilter'
 import SizeFilter from '../SizeFilter/SizeFilter'
 import ColorFilter from '../ColorFilter/ColorFilter'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
+import { createQueryRequest } from '../../lib/createQueryRequest'
 
 const FilterProducts = () => {
-    const { isLoading, query } = useAppSelector((state) => state.productListReducer)
-
+    const { isLoading } = useAppSelector((state) => state.productListReducer)
+    const dispatch = useAppDispatch()
     const [filters, setFilters] = useState<Filters>({
         category: '',
         color: [],
@@ -20,32 +21,16 @@ const FilterProducts = () => {
         price: '',
         size: [],
         style: [],
+        isApply: false,
     })
-    const dispatch = useAppDispatch()
 
     const onCreateQueryReq = () => {
+        if (filters.isApply) return
+
+        setFilters((prev) => ({ ...prev, isApply: true }))
         window.scrollTo(0, 0)
-        let query = '&'
 
-        for (const key in filters) {
-            const value = filters[key as keyof Filters]
-
-            if (Array.isArray(value)) {
-                if (value.length == 0) continue
-
-                value.forEach((item) => (query += `${key}=${item}&`))
-            } else {
-                if (value == '') continue
-
-                query += `${key}=${value}&`
-            }
-        }
-
-        if (query.length > 0) {
-            query = query.slice(0, -1)
-        }
-        console.log(query)
-
+        const query = createQueryRequest(filters)
         dispatch(setQuery(query))
     }
 
@@ -57,7 +42,9 @@ const FilterProducts = () => {
             price: '',
             size: [],
             style: [],
+            isApply: false,
         })
+        dispatch(setQuery(''))
     }
     return (
         <div className={styles.filters}>
@@ -77,7 +64,7 @@ const FilterProducts = () => {
                 <LoaderBtn variant="button" type="big" />
             ) : (
                 <AppButton variant="black" type="big" onClick={onCreateQueryReq}>
-                    {query == '' ? 'Применить' : 'Применено!'}
+                    {!filters.isApply ? 'Применить' : 'Применено!'}
                 </AppButton>
             )}
         </div>

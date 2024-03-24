@@ -21,6 +21,7 @@ const SizeFilter: FC<IProps> = ({ filters, onChange }) => {
         } else {
             onChange((prev) => ({ ...prev, size: prev.size.concat(sizes) }))
         }
+        onChange((prev) => ({ ...prev, isApply: false }))
     }
 
     return (

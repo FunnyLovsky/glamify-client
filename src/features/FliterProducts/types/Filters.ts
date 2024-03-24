@@ -5,4 +5,5 @@ export interface Filters {
     size: string[]
     color: string[]
     price: string
+    isApply: boolean
 }

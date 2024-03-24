@@ -24,6 +24,8 @@ const ColorFilter: FC<IProps> = ({ filters, onChange }) => {
         } else {
             onChange((prev) => ({ ...prev, color: prev.color.concat(color) }))
         }
+
+        onChange((prev) => ({ ...prev, isApply: false }))
     }
 
     return (

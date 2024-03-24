@@ -21,6 +21,7 @@ const CategoryFliter: FC<IProps> = ({ filters, onChange }) => {
         } else {
             onChange((prev) => ({ ...prev, category }))
         }
+        onChange((prev) => ({ ...prev, isApply: false }))
     }
 
     return (

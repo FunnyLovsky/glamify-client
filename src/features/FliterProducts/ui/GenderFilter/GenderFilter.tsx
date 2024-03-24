@@ -21,6 +21,7 @@ const GenderFliter: FC<IProps> = ({ filters, onChange }) => {
         } else {
             onChange((prev) => ({ ...prev, gender }))
         }
+        onChange((prev) => ({ ...prev, isApply: false }))
     }
 
     return (
