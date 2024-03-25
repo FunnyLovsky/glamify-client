@@ -9,6 +9,7 @@ interface IProps {
     placeholder?: string
     type: string
     icon: 'search' | 'promo' | 'email' | 'password' | 'user'
+    iconOnClick?: () => void
     value?: string
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -24,12 +25,12 @@ const icons = {
 }
 
 const AppInput: FC<IProps> = forwardRef<HTMLInputElement, IProps>(function AppInput(props, ref) {
-    const { icon, type, onChange, onFocus, placeholder, value } = props
+    const { icon, type, onChange, onFocus, placeholder, value, iconOnClick } = props
     const Icon = icons[icon]
 
     return (
         <div className={styles.input}>
-            <Icon />
+            <Icon onClick={iconOnClick} />
             <input
                 value={value}
                 ref={ref}
