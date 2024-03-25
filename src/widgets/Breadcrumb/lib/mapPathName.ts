@@ -28,6 +28,15 @@ export const mapPathName = (pathname: string, search: string) => {
             })
         }
 
+        const name = searchParams.get('name')
+
+        if (name) {
+            paths.push({
+                to: `${pathname}?name=${name}`,
+                title: name[0].toUpperCase() + name.substring(1),
+            })
+        }
+
         crumbs.push(...paths)
     }
 

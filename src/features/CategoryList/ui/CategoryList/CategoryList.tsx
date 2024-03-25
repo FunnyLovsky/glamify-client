@@ -1,6 +1,6 @@
 import styles from './CategoryList.module.scss'
 import { useLocation } from 'react-router-dom'
-import { routePaths } from '@/widgets/Breadcrumb'
+import { mapPathName } from '@/widgets/Breadcrumb'
 import { Loader, Product } from '@/entities/Product'
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { createArray } from '@/shared/lib/createArray'
@@ -8,7 +8,7 @@ import NotFound from '@/shared/ui/NotFound'
 import SEARCH from '@/shared/assets/icons/search.svg'
 
 const CategoryList = () => {
-    const { pathname } = useLocation()
+    const { pathname, search } = useLocation()
     const { error, isLoading, products, totalCount, limit } = useAppSelector(
         (state) => state.productListReducer
     )
@@ -50,11 +50,11 @@ const CategoryList = () => {
             </>
         )
     }
-
+    const title = mapPathName(pathname, search).pop()
     return (
         <div className={styles.cont_list}>
             <div className={styles.head}>
-                <h3>{routePaths[pathname]}</h3>
+                <h3>{title.title}</h3>
                 <div className={styles.sort}>{renderCountProduct()}</div>
             </div>
             {renderList()}
