@@ -42,12 +42,9 @@ const CategoryList = () => {
         return isLoading ? (
             <p>Loading...</p>
         ) : (
-            <>
-                <p>
-                    Показано 1-{currCount} из {totalCount} товаров
-                </p>
-                <p>Сортировать:</p>
-            </>
+            <p>
+                Показано 1-{currCount} из {totalCount} товаров
+            </p>
         )
     }
     const title = mapPathName(pathname, search).pop()

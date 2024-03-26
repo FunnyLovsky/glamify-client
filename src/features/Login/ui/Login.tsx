@@ -3,6 +3,7 @@ import styles from './Login.module.scss'
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { useState } from 'react'
 import { loginUser } from '@/entities/User'
+import AppButton from '@/shared/ui/AppButton'
 
 const Login = () => {
     const dispatch = useAppDispatch()
@@ -32,7 +33,7 @@ const Login = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                {isLoading ? <p>Loading...</p> : <button>Войти</button>}
+                {isLoading ? <p>Loading...</p> : <AppButton variant="black">Войти</AppButton>}
                 {error && <p>{error}</p>}
             </form>
         </div>

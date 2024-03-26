@@ -3,6 +3,7 @@ import Container from '@/shared/ui/Container'
 import { useEffect, useState } from 'react'
 import styles from './Authorization.module.scss'
 import { Registration } from '@/features/Registration'
+import AppButton from '@/shared/ui/AppButton'
 
 const Authoization = () => {
     const [isLogin, setIsLogin] = useState<boolean>(true)
@@ -22,8 +23,12 @@ const Authoization = () => {
         <Container>
             <h1 className={styles.title}>Авторизация</h1>
             <div className={styles.controls}>
-                <button onClick={onChangeLogin}>Войти</button>
-                <button onClick={onChangeRegisrt}>Зарегистрироваться</button>
+                <AppButton variant={isLogin ? 'black' : 'white'} onClick={onChangeLogin}>
+                    Войти
+                </AppButton>
+                <AppButton variant={isLogin ? 'white' : 'black'} onClick={onChangeRegisrt}>
+                    Зарегистрироваться
+                </AppButton>
             </div>
             <div className={styles.cont}>{isLogin ? <Login /> : <Registration />}</div>
         </Container>
