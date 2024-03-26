@@ -2,15 +2,27 @@ import styles from './Checkout.module.scss'
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import AppLink from '@/shared/ui/AppLink'
 import { RoutesName } from '@/app/providers/router'
+import AppButton from '@/shared/ui/AppButton'
+import { useState } from 'react'
+import { PaymentModal } from '@/features/PaymentModal'
 
 const Checkout = () => {
     const { cartProducts } = useAppSelector((state) => state.cartReducer)
+    const [modal, setModal] = useState(false)
 
     const subtotal = cartProducts.reduce((acc, { price, count }) => price * count + acc, 0)
     const discount = cartProducts.reduce((acc, { price, discount, count }) => {
         return acc + (discount ? Math.floor((price * discount) / 100) * count : 0)
     }, 0)
     const total = subtotal - discount
+
+    const onOpenModal = () => {
+        setModal(true)
+    }
+
+    const onCloseModal = () => {
+        setModal(false)
+    }
 
     return (
         <div className={styles.terminal}>
@@ -27,9 +39,10 @@ const Checkout = () => {
                 <h4>Итоговая сумма</h4>
                 <span>₽{total}</span>
             </div>
-            <AppLink href={RoutesName.MAIN} type="button">
+            <AppButton type="big" variant="black" onClick={onOpenModal}>
                 Оформить заказ
-            </AppLink>
+            </AppButton>
+            {modal && <PaymentModal onClose={onCloseModal} total={total} />}
         </div>
     )
 }

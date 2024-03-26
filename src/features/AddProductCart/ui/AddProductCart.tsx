@@ -3,6 +3,8 @@ import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/li
 import { FC } from 'react'
 import AppButton from '@/shared/ui/AppButton'
 import { addProductAuth } from '@/entities/Cart'
+import AppLink from '@/shared/ui/AppLink'
+import { RoutesName } from '@/app/providers/router'
 
 type Product = { color: string; size: string }
 
@@ -22,9 +24,17 @@ const AddProductCart: FC<IProps> = ({ product }) => {
     }
 
     return (
-        <AppButton variant="black" type="big" onClick={addProductToCart}>
-            Добавить в корзину
-        </AppButton>
+        <>
+            {auth ? (
+                <AppButton variant="black" type="big" onClick={addProductToCart}>
+                    Добавить в корзину
+                </AppButton>
+            ) : (
+                <AppLink href={RoutesName.AUTH} type="button">
+                    Авторизуйтесь чтобы добавить товар
+                </AppLink>
+            )}
+        </>
     )
 }
 

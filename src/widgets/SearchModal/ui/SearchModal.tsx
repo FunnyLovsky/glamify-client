@@ -19,10 +19,6 @@ const SearchModal: FC<IProps> = ({ onClose }) => {
     const navigate = useNavigate()
     const { isLoading, products } = useFetchProducts(`name=${query}`, 6)
 
-    const closeModal = ({ key }: KeyboardEvent) => {
-        if (key === 'Escape') onClose()
-    }
-
     const onSearchProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value)
     }
@@ -35,11 +31,6 @@ const SearchModal: FC<IProps> = ({ onClose }) => {
 
     useEffect(() => {
         input.current.focus()
-        document.addEventListener('keydown', closeModal)
-
-        return () => {
-            document.removeEventListener('keydown', closeModal)
-        }
     }, [])
 
     return (

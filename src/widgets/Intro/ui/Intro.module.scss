@@ -6,9 +6,25 @@
     background: $bg_header_color;
 
     &_cont {
-        width: 50%;
-        padding: 100px 0;
+        width: 48%;
+        padding: 20px 0;
     }
+
+    &_img {
+        width: 52%;
+        height: 707px;
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: contain;
+    }
+}
+
+.flex_cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .title {

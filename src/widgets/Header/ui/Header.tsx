@@ -13,14 +13,10 @@ const Header = () => {
     const [search, setSearch] = useState(false)
 
     const onOpenSearch = () => {
-        document.body.style.paddingRight = '18px'
-        document.body.style.overflow = 'hidden'
         setSearch(true)
     }
 
     const onCloseSearch = () => {
-        document.body.style.overflow = 'auto'
-        document.body.style.paddingRight = ''
         setSearch(false)
     }
     return (

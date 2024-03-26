@@ -18,6 +18,11 @@ const Sizes: FC<IProps> = ({ onChange, product, productInCart }) => {
     const { isLoading } = useAppSelector((state) => state.cartReducer)
     const { isLoading: authLoading } = useAppSelector((state) => state.authReducer)
 
+    const setSelectSize = () => {
+        const size = productDetail.sizes.find((size) => size == productInCart.size)
+        return <AppButton variant="black">{size}</AppButton>
+    }
+
     const renderContent = () => {
         if (isLoading || authLoading) {
             return (
@@ -31,22 +36,24 @@ const Sizes: FC<IProps> = ({ onChange, product, productInCart }) => {
 
         return (
             <>
-                {productDetail.sizes.map((size) => (
-                    <AppButton
-                        key={size}
-                        onClick={() => onChange(size)}
-                        variant={product.size == size ? 'black' : 'white'}
-                    >
-                        {size}
-                    </AppButton>
-                ))}
+                {!productInCart
+                    ? productDetail.sizes.map((size) => (
+                          <AppButton
+                              key={size}
+                              onClick={() => onChange(size)}
+                              variant={product.size == size ? 'black' : 'white'}
+                          >
+                              {size}
+                          </AppButton>
+                      ))
+                    : setSelectSize()}
             </>
         )
     }
 
     return (
         <div className={styles.cont}>
-            <p className={styles.title}>Выберите размер</p>
+            <p className={styles.title}>{productInCart ? 'Размер' : 'Выберите размер'}</p>
             <div className={styles.sizes}>{renderContent()}</div>
         </div>
     )
