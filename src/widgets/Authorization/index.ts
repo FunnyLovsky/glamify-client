@@ -1,1 +1,1 @@
-export { default as Authorization } from './ui/Authorization'
+export { default as Authorization } from './ui/Authorization/Authorization'

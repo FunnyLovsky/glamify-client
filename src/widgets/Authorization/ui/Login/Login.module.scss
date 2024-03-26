@@ -1,0 +1,26 @@
+@import '@/app/styles/variables';
+
+.cont {
+    width: 500px;
+    border: 1px solid $paragph_color;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+
+    & span {
+        display: inline-block;
+    }
+}
+
+.error {
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -65px;
+    background: $diccount_bg_precent;
+    color: $discount_precent_color;
+    padding: 10px 10px;
+    border-radius: 15px;
+    z-index: 10;
+}

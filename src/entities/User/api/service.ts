@@ -31,7 +31,16 @@ export class Services {
         password: string,
         name: string
     ): Promise<AxiosResponse<AuthResponse>> {
-        return $api.post<AuthResponse>('/user/registration', { email, password, name })
+        try {
+            const response = await $api.post<AuthResponse>('/user/registration', {
+                email,
+                password,
+                name,
+            })
+            return response
+        } catch (error) {
+            errorHandler(error)
+        }
     }
 
     static async logout(): Promise<void> {
