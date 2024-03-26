@@ -54,6 +54,7 @@ const SearchModal: FC<IProps> = ({ onClose }) => {
                                 icon="search"
                                 onChange={onSearchProducts}
                                 ref={input}
+                                isLoading={isLoading}
                                 iconOnClick={() => {
                                     navigate(`${RoutesName.SHOP}?name=${query}`)
                                     onClose()

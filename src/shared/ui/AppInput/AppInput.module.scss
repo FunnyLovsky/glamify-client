@@ -7,12 +7,8 @@
     height: 100%;
 
     & svg {
-        position: absolute;
         width: 20px;
         height: 20px;
-        left: 17px;
-        top: 50%;
-        transform: translateY(-50%);
         transition: 0.3s;
         color: $discount_price_color;
 
@@ -40,5 +36,37 @@
         &:focus {
             cursor: text;
         }
+    }
+}
+
+.icon {
+    position: absolute;
+    left: 17px;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 3px solid $discount_price_color;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
