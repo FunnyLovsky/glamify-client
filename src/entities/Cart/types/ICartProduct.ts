@@ -7,6 +7,7 @@ export interface ICartProduct {
     size: string
     count: number
     id: string
+    url: string
 }
 
 export interface ICartResponse {

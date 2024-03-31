@@ -2,9 +2,8 @@ import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/li
 // import styles from './UpdateProductCart.module.scss'
 import { FC } from 'react'
 import AppButton from '@/shared/ui/AppButton'
-import { addProductAuth } from '@/entities/Cart'
-import AppLink from '@/shared/ui/AppLink'
-import { RoutesName } from '@/app/providers/router'
+import { addProductAuth, addProductNoAuth } from '@/entities/Cart'
+import { useLocation } from 'react-router-dom'
 
 type Product = { color: string; size: string }
 
@@ -14,26 +13,35 @@ interface IProps {
 
 const AddProductCart: FC<IProps> = ({ product }) => {
     const dispatch = useAppDispatch()
+    const { pathname } = useLocation()
     const { productDetail } = useAppSelector((state) => state.productReducer)
+    const { id, image, name, price, discount } = productDetail
     const { auth } = useAppSelector((state) => state.authReducer)
 
     const addProductToCart = () => {
         if (auth) {
-            dispatch(addProductAuth({ ...product, productId: productDetail.id, count: 1 }))
+            dispatch(addProductAuth({ ...product, productId: id, count: 1 }))
+        } else {
+            dispatch(
+                addProductNoAuth({
+                    ...product,
+                    count: 1,
+                    discount,
+                    id,
+                    image,
+                    name,
+                    price,
+                    url: pathname.split('/')[2],
+                })
+            )
         }
     }
 
     return (
         <>
-            {auth ? (
-                <AppButton variant="black" type="big" onClick={addProductToCart}>
-                    Добавить в корзину
-                </AppButton>
-            ) : (
-                <AppLink href={RoutesName.AUTH} type="button">
-                    Авторизуйтесь чтобы добавить товар
-                </AppLink>
-            )}
+            <AppButton variant="black" type="big" onClick={addProductToCart}>
+                Добавить в корзину
+            </AppButton>
         </>
     )
 }

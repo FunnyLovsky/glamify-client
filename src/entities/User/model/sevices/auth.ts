@@ -1,7 +1,7 @@
 import { createAppAsyncThunk } from '@/app/providers/StoreProvider/lib/hooks'
 import { Services } from '../../api/service'
 import { setUser } from '../slice/userSilce'
-import { setCart } from '@/entities/Cart'
+import { fetchProductsLS, setCart } from '@/entities/Cart'
 
 export const authUser = createAppAsyncThunk(
     'user/authUser',
@@ -13,6 +13,7 @@ export const authUser = createAppAsyncThunk(
             dispatch(setUser(user))
             dispatch(setCart(cart))
         } catch (error) {
+            dispatch(fetchProductsLS())
             return rejectWithValue(error.message)
         }
     }

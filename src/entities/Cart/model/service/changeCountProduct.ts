@@ -1,5 +1,7 @@
 import { createAppAsyncThunk } from '@/app/providers/StoreProvider/lib/hooks'
 import { Services } from '../../api/service'
+import { AppDispatch, RootState } from '@/app/providers/StoreProvider/config/store'
+import { changeCountProduct } from '../slice/cartSlice'
 
 export const changeCountProductAuth = createAppAsyncThunk(
     'cart/changeCountProductAuth',
@@ -12,3 +14,10 @@ export const changeCountProductAuth = createAppAsyncThunk(
         }
     }
 )
+
+export const changeCountProductNoAuth =
+    (productId: string, count: number) => (dispatch: AppDispatch, getState: () => RootState) => {
+        dispatch(changeCountProduct({ id: productId, count }))
+        const products = getState().cartReducer.cartProducts
+        localStorage.setItem('products', JSON.stringify(products))
+    }

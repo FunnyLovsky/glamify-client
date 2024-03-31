@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import styles from './ChangeCountProductCart.module.scss'
 import { FC } from 'react'
-import { ICartProduct, changeCountProductAuth } from '@/entities/Cart'
+import { ICartProduct, changeCountProductAuth, changeCountProductNoAuth } from '@/entities/Cart'
 import PLUS from '@/shared/assets/elements/plus.svg'
 import MINUS from '@/shared/assets/elements/minus.svg'
 
@@ -18,6 +18,8 @@ const ChangeCountProductCart: FC<IProps> = ({ productCart, type = 'big' }) => {
     const changeCountProductToCart = (count: number) => {
         if (auth) {
             dispatch(changeCountProductAuth({ productId, count }))
+        } else {
+            dispatch(changeCountProductNoAuth(productId, count))
         }
     }
 

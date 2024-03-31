@@ -8,6 +8,7 @@ import { PaymentModal } from '@/features/PaymentModal'
 
 const Checkout = () => {
     const { cartProducts } = useAppSelector((state) => state.cartReducer)
+    const { auth } = useAppSelector((state) => state.authReducer)
     const [modal, setModal] = useState(false)
 
     const subtotal = cartProducts.reduce((acc, { price, count }) => price * count + acc, 0)
@@ -39,9 +40,16 @@ const Checkout = () => {
                 <h4>Итоговая сумма</h4>
                 <span>₽{total}</span>
             </div>
-            <AppButton type="big" variant="black" onClick={onOpenModal}>
-                Оформить заказ
-            </AppButton>
+            {auth ? (
+                <AppButton type="big" variant="black" onClick={onOpenModal}>
+                    Оформить заказ
+                </AppButton>
+            ) : (
+                <AppLink type="button" href={RoutesName.AUTH}>
+                    Авторизуйтесь для оплаты
+                </AppLink>
+            )}
+
             {modal && <PaymentModal onClose={onCloseModal} total={total} />}
         </div>
     )

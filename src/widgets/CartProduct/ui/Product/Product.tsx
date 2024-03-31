@@ -21,7 +21,7 @@ const ProductCart: FC<IProps> = ({ product }) => {
 
     return (
         <div className={styles.product}>
-            <Link to={`${RoutesName.SHOP}/${product.image}`}>
+            <Link to={`${RoutesName.SHOP}/${product.url}`}>
                 <img src={`${SERVER_URL}/${product.image}`} alt="" />
             </Link>
 

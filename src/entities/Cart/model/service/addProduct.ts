@@ -1,6 +1,8 @@
 import { createAppAsyncThunk } from '@/app/providers/StoreProvider/lib/hooks'
 import { Services } from '../../api/service'
-import { ICartRequest } from '../../types/ICartProduct'
+import { ICartProduct, ICartRequest } from '../../types/ICartProduct'
+import { AppDispatch } from '@/app/providers/StoreProvider/config/store'
+import { addProduct } from '../slice/cartSlice'
 
 export const addProductAuth = createAppAsyncThunk(
     'cart/addProductAuth',
@@ -13,3 +15,11 @@ export const addProductAuth = createAppAsyncThunk(
         }
     }
 )
+
+export const addProductNoAuth = (product: ICartProduct) => (dispatch: AppDispatch) => {
+    dispatch(addProduct(product))
+    const data = localStorage.getItem('products') || '[]'
+    const json = JSON.parse(data) as ICartProduct[]
+    json.push(product)
+    localStorage.setItem('products', JSON.stringify(json))
+}

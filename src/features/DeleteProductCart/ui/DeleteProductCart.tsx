@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/li
 import styles from './DeleteProductCart.module.scss'
 import { FC } from 'react'
 import AppButton from '@/shared/ui/AppButton'
-import { deleteProductAuth } from '@/entities/Cart'
+import { deleteProductAuth, deleteProductNoAuth } from '@/entities/Cart'
 import DELETE from '@/shared/assets/icons/delete.svg'
 
 interface IProps {
@@ -17,6 +17,8 @@ const DeleteProductCart: FC<IProps> = ({ productId, type }) => {
     const deleteProductToCart = () => {
         if (auth) {
             dispatch(deleteProductAuth(productId))
+        } else {
+            dispatch(deleteProductNoAuth(productId))
         }
     }
 

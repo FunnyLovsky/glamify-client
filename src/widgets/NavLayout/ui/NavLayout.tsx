@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import styles from './NavLayout.module.scss'
 import { Footer } from '@/widgets/Footer'
+import { fetchProductsLS } from '@/entities/Cart'
 
 const NavLayout = () => {
     console.log('navlayou')
@@ -13,6 +14,8 @@ const NavLayout = () => {
     useEffect(() => {
         if (localStorage.getItem('token')) {
             dispatch(authUser())
+        } else {
+            dispatch(fetchProductsLS())
         }
     }, [dispatch])
 
