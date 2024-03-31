@@ -1,7 +1,7 @@
 import { createAppAsyncThunk } from '@/app/providers/StoreProvider/lib/hooks'
 import { Services } from '../../api/service'
 import { setAuth } from '../slice/authSlice'
-import { setCart } from '@/entities/Cart'
+import { CartProductDto, setCart } from '@/entities/Cart'
 
 export const loginUser = createAppAsyncThunk(
     'user/loginUser',
@@ -10,9 +10,11 @@ export const loginUser = createAppAsyncThunk(
         { rejectWithValue, dispatch }
     ) => {
         try {
-            const response = await Services.login(email, password)
+            const products = CartProductDto.getProducts()
+            const response = await Services.login(email, password, products)
             const { cart, accessToken, user } = response.data
             localStorage.setItem('token', accessToken)
+            localStorage.removeItem('products')
             dispatch(setAuth(true))
             dispatch(setCart(cart))
             return user
