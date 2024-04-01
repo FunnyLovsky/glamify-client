@@ -1,6 +1,5 @@
 import styles from './Product.module.scss'
 import { FC } from 'react'
-import { SERVER_URL } from '@/shared/const/URL'
 import { ICartProduct } from '@/entities/Cart'
 import { DeleteProductCart } from '@/features/DeleteProductCart'
 import { ChangeCountProductCart } from '@/features/ChangeCountProductCart'
@@ -8,6 +7,7 @@ import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import LoaderBtn from '@/shared/ui/LoaderBtn'
 import { Link } from 'react-router-dom'
 import { RoutesName } from '@/app/providers/router'
+import Image from '@/shared/ui/Image'
 
 interface IProps {
     product: ICartProduct
@@ -22,7 +22,9 @@ const ProductCart: FC<IProps> = ({ product }) => {
     return (
         <div className={styles.product}>
             <Link to={`${RoutesName.SHOP}/${product.url}`}>
-                <img src={`${SERVER_URL}/${product.image}`} alt="" />
+                <div className={styles.img}>
+                    <Image src={product.image} />
+                </div>
             </Link>
 
             <div className={styles.info}>

@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import styles from './Images.module.scss'
-import { SERVER_URL } from '@/shared/const/URL'
 import { FC, useEffect, useState } from 'react'
+import Image from '@/shared/ui/Image'
 
 type Product = { color: string; size: string }
 
@@ -13,7 +13,7 @@ interface IProps {
 const Images: FC<IProps> = ({ product }) => {
     const { productDetail } = useAppSelector((state) => state.productReducer)
     const colors = productDetail.colors.find((color) => color.name == product.color)
-    const imgs = colors.images.map((img) => `${SERVER_URL}/${img}`)
+    const imgs = colors.images
 
     const [selectImg, setSelectImg] = useState(imgs[0])
     useEffect(() => {
@@ -33,12 +33,12 @@ const Images: FC<IProps> = ({ product }) => {
                         onClick={() => onChangeImg(img)}
                         className={img == selectImg ? styles.active : styles.btn}
                     >
-                        <img src={img} alt={img} />
+                        <Image src={img} />
                     </button>
                 ))}
             </div>
             <div className={styles.main}>
-                <img src={selectImg} alt={selectImg} />
+                <Image src={selectImg} />
             </div>
         </div>
     )

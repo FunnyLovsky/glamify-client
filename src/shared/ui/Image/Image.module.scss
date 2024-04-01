@@ -1,0 +1,47 @@
+@import '@/app/styles/variables';
+
+.img {
+    width: 100%;
+    height: 100%;
+    background: $bg_img_color;
+    color: $black_color;
+    animation: load 2s ease-in-out infinite;
+
+    & img {
+        transition: 0.3s;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.not_found {
+    width: 100%;
+    background: $bg_img_color;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+
+    &:hover {
+        transform: scale(1.2);
+    }
+
+    & svg {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+@keyframes load {
+    0% {
+        background: $bg_img_color;
+    }
+    50% {
+        background: darken($color: $bg_img_color, $amount: 10px);
+    }
+    100% {
+        background: $bg_img_color;
+    }
+}

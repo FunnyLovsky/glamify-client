@@ -3,9 +3,9 @@ import { IProduct } from '../../types/IProduct'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { RoutesName } from '@/app/providers/router'
-import { SERVER_URL } from '@/shared/const/URL'
 import Info from '../Info/Info'
 import Price from '../Price/Price'
+import Image from '@/shared/ui/Image'
 
 interface IProps {
     data: IProduct
@@ -18,7 +18,7 @@ const Product: FC<IProps> = ({ data, catalog = null }) => {
     return (
         <Link to={`${path}/${data.url}`} className={styles.product}>
             <div className={styles.img}>
-                <img src={`${SERVER_URL}/${data.image}`} alt={data.url} loading="lazy" />
+                <Image src={data.image} />
             </div>
             <Info data={data} type="small" />
             <Price data={data} type="small" />

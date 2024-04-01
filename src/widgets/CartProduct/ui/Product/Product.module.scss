@@ -8,17 +8,18 @@
 
     gap: 16px;
 
-    & img {
-        width: 124px;
-        height: 124px;
-        border-radius: 9px;
-    }
-
     &:last-child {
         padding-bottom: 0;
         border: none;
         margin-bottom: 0;
     }
+}
+
+.img {
+    width: 124px;
+    height: 124px;
+    border-radius: 9px;
+    overflow: hidden;
 }
 
 .title {
