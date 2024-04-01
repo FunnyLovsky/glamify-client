@@ -43,7 +43,7 @@ const Account = () => {
                         </AppButton>
                     </div>
                 </div>
-                {isInfo ? <Info /> : <Setting />}
+                <main className={styles.main}>{isInfo ? <Info /> : <Setting />}</main>
             </div>
         </Container>
     )

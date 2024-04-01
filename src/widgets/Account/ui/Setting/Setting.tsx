@@ -4,7 +4,7 @@ import { Logout } from '@/features/Logout'
 
 const Setting = () => {
     return (
-        <main className={styles.main}>
+        <>
             <div className={styles.inner}>
                 <h3>Выйти из аккаунта</h3>
                 <Logout />
@@ -13,7 +13,7 @@ const Setting = () => {
                 <h3>Удалить аккаунт</h3>
                 <AppButton variant="delete">Удалить</AppButton>
             </div>
-        </main>
+        </>
     )
 }
 

@@ -14,7 +14,7 @@ interface IProps {
     isLoading?: boolean
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void
-
+    disabled?: boolean
     ref?: React.ForwardedRef<HTMLInputElement>
 }
 const icons = {
@@ -26,7 +26,8 @@ const icons = {
 }
 
 const AppInput: FC<IProps> = forwardRef<HTMLInputElement, IProps>(function AppInput(props, ref) {
-    const { icon, type, onChange, onFocus, placeholder, value, iconOnClick, isLoading } = props
+    const { icon, type, onChange, onFocus, placeholder, value, iconOnClick, isLoading, disabled } =
+        props
     const Icon = icons[icon]
 
     return (
@@ -46,6 +47,7 @@ const AppInput: FC<IProps> = forwardRef<HTMLInputElement, IProps>(function AppIn
                 placeholder={placeholder}
                 onChange={onChange}
                 onFocus={onFocus}
+                disabled={disabled}
             />
         </div>
     )
