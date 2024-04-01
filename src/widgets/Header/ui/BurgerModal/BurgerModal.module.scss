@@ -14,7 +14,7 @@
     height: 100%;
     width: 70%;
     border-radius: 0 20px 20px 0;
-    animation: start 0.3s ease-in-out forwards;
+    animation: start 0.2s ease-in-out forwards;
 
     & a {
         display: block;
@@ -29,5 +29,14 @@
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+@keyframes end {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
     }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import styles from './BurgerModal.module.scss'
 import Modal from '@/shared/ui/Modal'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { RoutesName } from '@/app/providers/router'
 import AppLink from '@/shared/ui/AppLink'
 
@@ -10,13 +10,20 @@ interface IProps {
 }
 
 const BurgerModal: FC<IProps> = ({ onClose }) => {
+    const [isClose, setIsClose] = useState(false)
+
+    const closeAnimation = () => {
+        setIsClose(true)
+    }
+
     return (
-        <Modal onClick={onClose}>
+        <Modal onClick={onClose} onCloseAnimation={closeAnimation}>
             <div className={styles.menu}>
                 <div
                     className={styles.cont}
                     id={styles.category}
                     onClick={(e) => e.stopPropagation()}
+                    style={{ animationName: isClose && styles.end }}
                 >
                     <AppLink href={RoutesName.SHOP} type="text" onClick={onClose}>
                         Товары
