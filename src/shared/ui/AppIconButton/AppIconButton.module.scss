@@ -1,0 +1,25 @@
+@import '@/app/styles/variables';
+
+.btn {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    transition: 0.3s;
+
+    & svg {
+        width: 24px;
+        height: 24px;
+        transition: 0.3s;
+    }
+
+    &:hover svg {
+        color: lighten($color: $black_color, $amount: 40%);
+    }
+
+    &:active {
+        transform: scale(0.7);
+    }
+}

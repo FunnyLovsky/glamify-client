@@ -8,26 +8,30 @@ import { ProfileIcon } from '@/entities/User'
 import { CartIcon } from '@/entities/Cart'
 import { useState } from 'react'
 import { SearchModal } from '@/widgets/SearchModal'
+import AppIconButton from '@/shared/ui/AppIconButton'
+import BurgerModal from '../BurgerModal/BurgerModal'
 
 const Header = () => {
     const [search, setSearch] = useState(false)
+    const [burger, setBurger] = useState(false)
 
-    const onOpenSearch = () => {
-        setSearch(true)
-    }
-
-    const onCloseSearch = () => {
-        setSearch(false)
-    }
     return (
         <header className={styles.header} style={{ paddingRight: search ? '18px' : '' }}>
             <Conatiner>
                 <nav className={styles.nav}>
-                    <NavLink to={RoutesName.MAIN} className={styles.avatar}>
-                        <h1>Glamify</h1>
-                    </NavLink>
+                    <div className={styles.burger}>
+                        <AppIconButton
+                            icon="burger"
+                            onClick={() => {
+                                setBurger(true)
+                            }}
+                        />
+                        <NavLink to={RoutesName.MAIN} className={styles.avatar}>
+                            <h1>Glamify</h1>
+                        </NavLink>
+                    </div>
 
-                    <div className={styles.cont}>
+                    <div className={styles.cont} id={styles.category}>
                         <AppLink href={RoutesName.SHOP} type="text">
                             Товары
                         </AppLink>
@@ -41,21 +45,24 @@ const Header = () => {
                             Стили
                         </AppLink>
                     </div>
-
-                    <AppInput
-                        placeholder="Поиск товаров..."
-                        type="text"
-                        icon="search"
-                        onFocus={onOpenSearch}
-                    />
+                    <div className={styles.search}>
+                        <AppInput
+                            placeholder="Поиск товаров..."
+                            type="text"
+                            icon="search"
+                            onFocus={() => setSearch(true)}
+                        />
+                    </div>
 
                     <div className={styles.cont}>
+                        <AppIconButton icon="search" onClick={() => setSearch(true)} />
                         <CartIcon />
                         <ProfileIcon />
                     </div>
                 </nav>
             </Conatiner>
-            {search && <SearchModal onClose={onCloseSearch} />}
+            {search && <SearchModal onClose={() => setSearch(false)} />}
+            {burger && <BurgerModal onClose={() => setBurger(false)} />}
         </header>
     )
 }

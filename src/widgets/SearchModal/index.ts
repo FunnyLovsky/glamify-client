@@ -1,1 +1,3 @@
-export { default as SearchModal } from './ui/SearchModal'
+import SearchModal from './ui/SearchModal'
+
+export { SearchModal }
