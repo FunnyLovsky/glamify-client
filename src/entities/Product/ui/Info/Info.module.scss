@@ -63,3 +63,36 @@
         color: $paragph_color;
     }
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 650px) {
+}
+
+@media screen and (max-width: 600px) {
+    .name_small {
+        font-size: 16px;
+    }
+
+    .rating_small {
+        font-size: 12px;
+    }
+
+    .rating_cont_small {
+        gap: 8px;
+        & svg {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
+}

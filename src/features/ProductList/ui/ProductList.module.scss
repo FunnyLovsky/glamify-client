@@ -56,4 +56,9 @@
 }
 
 @media screen and (max-width: 375px) {
+    .list {
+        & a {
+            width: 46%;
+        }
+    }
 }
