@@ -26,13 +26,19 @@ const Modal: FC<IProps> = ({ children, onClick, onCloseAnimation = null }) => {
     }
 
     useEffect(() => {
-        document.body.style.paddingRight = '18px'
-        document.body.style.overflow = 'hidden'
+        if (document.body.offsetWidth > 650) {
+            document.body.style.paddingRight = '18px'
+            document.body.style.overflow = 'hidden'
+        }
+
         document.addEventListener('keydown', onKeyDown)
 
         return () => {
-            document.body.style.overflow = 'auto'
-            document.body.style.paddingRight = ''
+            if (document.body.offsetWidth > 650) {
+                document.body.style.overflow = 'auto'
+                document.body.style.paddingRight = ''
+            }
+
             document.removeEventListener('keydown', onKeyDown)
         }
     }, [])

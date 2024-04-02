@@ -45,19 +45,14 @@
     justify-content: space-between;
     width: 100%;
     margin-top: 48px;
+    gap: 32px;
 }
 
 .result_item {
-    &:nth-child(1) {
-        padding-right: 32px;
-    }
     &:nth-child(2) {
         border-right: 1px solid $stroke_color;
         border-left: 1px solid $stroke_color;
         padding: 0 32px;
-    }
-    &:nth-child(3) {
-        padding-left: 32px;
     }
 }
 
@@ -72,6 +67,8 @@
 @media screen and (max-width: 800px) {
     .intro_cont {
         width: 100%;
+
+        padding: 35px 0 0;
     }
 
     .intro_img {
@@ -99,6 +96,29 @@
 }
 
 @media screen and (max-width: 600px) {
+    .count {
+        font-size: 30px;
+    }
+
+    .results {
+        gap: 27px;
+    }
+
+    .result_item {
+        &:nth-child(2) {
+            padding: 0 27px;
+        }
+    }
+
+    .descrip {
+        font-size: 14px;
+    }
+
+    .intro_cont {
+        & a {
+            text-align: center;
+        }
+    }
 }
 
 @media screen and (max-width: 425px) {
@@ -112,10 +132,24 @@
             width: 100%;
         }
     }
+    .count {
+        font-size: 24px;
+    }
+
+    .descrip {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width: 375px) {
     .title {
         font-size: 30px;
+    }
+
+    .result_item {
+        &:nth-child(2) {
+            padding: 0 0 0 27px;
+            border-right: none;
+        }
     }
 }

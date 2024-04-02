@@ -15,8 +15,10 @@ const Header = () => {
     const [search, setSearch] = useState(false)
     const [burger, setBurger] = useState(false)
 
+    const paddingHeader = search && document.body.offsetWidth > 650 ? '18px' : ''
+
     return (
-        <header className={styles.header} style={{ paddingRight: search ? '18px' : '' }}>
+        <header className={styles.header} style={{ paddingRight: paddingHeader }}>
             <Conatiner>
                 <nav className={styles.nav}>
                     <div className={styles.burger}>

@@ -24,6 +24,7 @@ const Image: FC<IProps> = ({ src }) => {
                     onLoad={() => setIsLoad(false)}
                     onError={() => setError(true)}
                     loading="lazy"
+                    className={isLoad ? styles.img_loading : styles.img_load}
                 />
             )}
         </div>

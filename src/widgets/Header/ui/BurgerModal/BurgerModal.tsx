@@ -16,6 +16,13 @@ const BurgerModal: FC<IProps> = ({ onClose }) => {
         setIsClose(true)
     }
 
+    const closeBurger = () => {
+        setIsClose(true)
+        setTimeout(() => {
+            onClose()
+        }, 200)
+    }
+
     return (
         <Modal onClick={onClose} onCloseAnimation={closeAnimation}>
             <div className={styles.menu}>
@@ -25,16 +32,16 @@ const BurgerModal: FC<IProps> = ({ onClose }) => {
                     onClick={(e) => e.stopPropagation()}
                     style={{ animationName: isClose && styles.end }}
                 >
-                    <AppLink href={RoutesName.SHOP} type="text" onClick={onClose}>
+                    <AppLink href={RoutesName.SHOP} type="text" onClick={closeBurger}>
                         Товары
                     </AppLink>
-                    <AppLink href={RoutesName.SALES} type="text" onClick={onClose}>
+                    <AppLink href={RoutesName.SALES} type="text" onClick={closeBurger}>
                         Скидки
                     </AppLink>
-                    <AppLink href={RoutesName.ARRIVALS} type="text" onClick={onClose}>
+                    <AppLink href={RoutesName.ARRIVALS} type="text" onClick={closeBurger}>
                         Новинки
                     </AppLink>
-                    <AppLink href={RoutesName.STYLES} type="text" onClick={onClose}>
+                    <AppLink href={RoutesName.STYLES} type="text" onClick={closeBurger}>
                         Стили
                     </AppLink>
                 </div>
