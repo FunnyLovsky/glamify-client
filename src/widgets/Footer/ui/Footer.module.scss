@@ -125,3 +125,55 @@
         width: 30px;
     }
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+    .cont {
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    .main,
+    .inner {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .main {
+        width: 100%;
+
+        & h1 {
+            font-size: 28px;
+        }
+    }
+
+    .inner {
+        width: 45%;
+
+        & h2 {
+            font-size: 14px;
+        }
+
+        & a {
+            font-size: 14px;
+        }
+    }
+
+    .info {
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
+}
