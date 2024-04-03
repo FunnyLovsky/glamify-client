@@ -18,3 +18,34 @@
     color: $paragph_color;
     margin-bottom: 24px;
 }
+
+@media screen and (max-width: 1024px) {
+    .cont {
+        flex-wrap: wrap;
+    }
+
+    .info {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .cont {
+        gap: 0;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .description {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
+}
