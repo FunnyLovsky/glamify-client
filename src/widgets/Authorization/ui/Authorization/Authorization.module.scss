@@ -54,3 +54,35 @@
     align-items: center;
     margin: 30px 0 50px;
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 650px) {
+    .head {
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        padding-bottom: 30px;
+    }
+
+    .controls {
+        justify-content: center;
+    }
+
+    .title {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
+}
