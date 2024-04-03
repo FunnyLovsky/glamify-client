@@ -33,5 +33,41 @@
         &:hover {
             color: $black_color;
         }
+
+        & h3 {
+            text-wrap: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
     }
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+    .search {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+}
+
+@media screen and (max-width: 600px) {
+    .search {
+        width: 85%;
+    }
+    .results a h3 {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .search {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 375px) {
 }
