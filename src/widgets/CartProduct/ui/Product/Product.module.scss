@@ -5,6 +5,7 @@
     border-bottom: 1px solid $stroke_color;
     margin-bottom: 24px;
     display: flex;
+    width: 100%;
 
     gap: 16px;
 
@@ -33,7 +34,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    width: calc(100% - 124px + 16px);
 
     & h3 {
         font-size: 20px;
@@ -49,4 +50,73 @@
 .price {
     font-size: 24px;
     font-weight: bold;
+}
+
+@media screen and (max-width: 1024px) {
+    .info h3 {
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 650px) {
+    .info {
+        width: calc(100% - 97px - 14px);
+        & h3 {
+            font-size: 16px;
+        }
+        & p {
+            font-size: 12px;
+        }
+    }
+
+    .price {
+        font-size: 20px;
+    }
+
+    .img {
+        width: 97px;
+        height: 97px;
+    }
+
+    .product {
+        padding-bottom: 16px;
+        margin-bottom: 16px;
+        gap: 14px;
+    }
+    .price {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+    .img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .info {
+        width: calc(100% - 90px - 14px);
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .product a {
+        width: 30%;
+    }
+    .img {
+        width: 100%;
+        height: 97px;
+    }
+    .info {
+        width: 70%;
+    }
 }

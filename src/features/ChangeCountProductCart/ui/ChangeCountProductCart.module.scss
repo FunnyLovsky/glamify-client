@@ -103,3 +103,37 @@
 .plus {
     border-radius: 0 30px 30px 0;
 }
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+}
+
+@media screen and (max-width: 650px) {
+    .cont_small {
+        height: 31px;
+
+        & div p {
+            padding: 0 7px;
+        }
+
+        & button {
+            padding: 0 13px;
+
+            & svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
+}

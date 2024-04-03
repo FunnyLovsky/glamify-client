@@ -10,6 +10,11 @@
     & h2 {
         margin-bottom: 24px;
     }
+
+    & a {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 .cont {
@@ -34,4 +39,28 @@
             color: $discount_precent_color;
         }
     }
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+    .terminal {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .terminal {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
 }
