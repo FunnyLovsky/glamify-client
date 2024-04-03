@@ -16,7 +16,6 @@
 }
 
 .sidebar {
-    width: 25%;
     border: 1px solid $stroke_color;
     padding: 20px;
     border-radius: 20px;
@@ -53,4 +52,61 @@
     & button {
         margin-bottom: 8px;
     }
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+    .cont {
+        flex-wrap: wrap;
+    }
+    .sidebar {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .btns {
+        display: flex;
+        gap: 15px;
+    }
+
+    .head {
+        margin-bottom: 0;
+    }
+
+    .main {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .title {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .btns {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .sidebar {
+        width: 100%;
+        display: block;
+    }
+
+    .head {
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 375px) {
 }
