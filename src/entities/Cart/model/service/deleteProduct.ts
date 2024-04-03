@@ -5,9 +5,10 @@ import { deleteProduct } from '../slice/cartSlice'
 
 export const deleteProductAuth = createAppAsyncThunk(
     'cart/deleteProductAuth',
-    async (productId: string, { rejectWithValue }) => {
+    async (productId: string = '', { rejectWithValue }) => {
         try {
-            const response = await Services.deleteProduct(productId)
+            const params = productId !== '' ? `/${productId}` : ''
+            const response = await Services.deleteProduct(params)
             return response.data.cart
         } catch (error) {
             return rejectWithValue(error.message)

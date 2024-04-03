@@ -24,9 +24,9 @@ export class Services {
         }
     }
 
-    static async deleteProduct(productId: string): Promise<AxiosResponse<ICartResponse>> {
+    static async deleteProduct(param: string): Promise<AxiosResponse<ICartResponse>> {
         try {
-            return await $api.delete<ICartResponse>(`/cart/${productId}`)
+            return await $api.delete<ICartResponse>(`/cart${param}`)
         } catch (error) {
             errorHandler(error)
         }

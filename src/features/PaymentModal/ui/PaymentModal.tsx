@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import AppForm from '@/shared/ui/AppForm'
 import styles from './PaymentModal.module.scss'
-import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
+import { useAppDispatch, useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import AppInput from '@/shared/ui/AppInput'
 import Modal from '@/shared/ui/Modal'
 import { FC } from 'react'
+import Conatiner from '@/shared/ui/Container'
+import { deleteProductAuth } from '@/entities/Cart'
 
 interface IProps {
     onClose: () => void
@@ -12,24 +14,32 @@ interface IProps {
 }
 
 const PaymentModal: FC<IProps> = ({ onClose, total }) => {
-    const { cartProducts } = useAppSelector((state) => state.cartReducer)
+    const { isLoading, error } = useAppSelector((state) => state.cartReducer)
+    const dispatch = useAppDispatch()
+
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        dispatch(deleteProductAuth(''))
+    }
 
     return (
         <Modal onClick={onClose}>
-            <div className={styles.cont}>
-                <div className={styles.payment} onClick={(e) => e.stopPropagation()}>
-                    <AppForm
-                        btn={`Оплатить ${total}₽`}
-                        error={null}
-                        isLoading={false}
-                        onSubmit={onClose}
-                        title="Оплата"
-                    >
-                        <AppInput icon="promo" type="number" placeholder="Номер карты..." />
-                        <AppInput icon="promo" type="text" placeholder="Имя владельца..." />
-                    </AppForm>
+            <Conatiner>
+                <div className={styles.cont}>
+                    <div className={styles.payment} onClick={(e) => e.stopPropagation()}>
+                        <AppForm
+                            btn={`Оплатить ${total}₽`}
+                            error={error}
+                            isLoading={isLoading}
+                            onSubmit={onSubmit}
+                            title="Оплата"
+                        >
+                            <AppInput icon="promo" type="number" placeholder="Номер карты..." />
+                            <AppInput icon="promo" type="text" placeholder="Имя владельца..." />
+                        </AppForm>
+                    </div>
                 </div>
-            </div>
+            </Conatiner>
         </Modal>
     )
 }
