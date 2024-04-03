@@ -53,6 +53,31 @@
 @media screen and (max-width: 650px) {
     .terminal {
         width: 100%;
+
+        & h2 {
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+    }
+
+    .cont {
+        margin-bottom: 20px;
+
+        & span {
+            font-size: 16px;
+        }
+
+        & h4 {
+            font-size: 16px;
+        }
+
+        &:nth-child(3) {
+            padding-bottom: 20px;
+        }
+
+        &:nth-child(4) span {
+            font-size: 20px;
+        }
     }
 }
 
