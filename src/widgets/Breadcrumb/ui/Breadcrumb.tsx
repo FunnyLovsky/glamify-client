@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom'
 import ARROW from '@/shared/assets/elements/arrow.svg'
 import { mapPathName } from '../lib/mapPathName'
 import { FC } from 'react'
-import { RoutesName } from '@/app/providers/router'
 import { IProductDetail } from '@/entities/Product'
 import { getProductCategory } from '../lib/getProductCategory'
 
@@ -23,9 +22,13 @@ const Breadcrumb: FC<IProps> = ({ product = null }) => {
     return (
         <Container>
             <div className={styles.breadcrumb}>
-                {paths.map((path) => (
+                {paths.map((path, index) => (
                     <div className={styles.link} key={path.to}>
-                        <Link to={path.to}>{path.title}</Link>
+                        {index !== paths.length - 1 ? (
+                            <Link to={path.to}>{path.title}</Link>
+                        ) : (
+                            <p>{path.title}</p>
+                        )}
                         <ARROW />
                     </div>
                 ))}

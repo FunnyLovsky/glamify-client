@@ -5,6 +5,7 @@
     margin: 24px 0;
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .link {
@@ -29,7 +30,7 @@
     }
 
     &:last-child {
-        & a {
+        & p {
             color: $black_color;
             font-weight: bold;
             cursor: default;
@@ -39,4 +40,26 @@
             display: none;
         }
     }
+}
+
+@media screen and (max-width: 1024px) {
+}
+
+@media screen and (max-width: 800px) {
+    .link a,
+    p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+}
+
+@media screen and (max-width: 600px) {
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
 }
