@@ -1,6 +1,6 @@
 import styles from './Filter.module.scss'
 import ARROW from '@/shared/assets/elements/arrow.svg'
-import { FC } from 'react'
+import { FC, useId, useState } from 'react'
 import { IPropsChildren } from '@/shared/types/IComponents'
 
 interface IProps extends IPropsChildren {
@@ -8,14 +8,23 @@ interface IProps extends IPropsChildren {
 }
 
 const Filter: FC<IProps> = ({ title, children }) => {
+    const [check, setCheck] = useState(false)
+    const id = useId()
+
+    const onChangeChech = () => {
+        setCheck((prev) => !prev)
+    }
     return (
         <div className={styles.filter}>
             <div className={styles.head}>
-                <h2>{title}</h2>
+                <label htmlFor={id}>{title}</label>
+                <input type="checkbox" id={id} checked={check} onChange={onChangeChech} />
 
                 <ARROW />
             </div>
-            {children}
+            <div className={styles.content} style={{ maxHeight: check ? '100vh' : '0vh' }}>
+                {children}
+            </div>
         </div>
     )
 }

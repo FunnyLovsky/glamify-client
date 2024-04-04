@@ -52,6 +52,10 @@
             color: $black_color;
         }
     }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 input[type='checkbox'] {
