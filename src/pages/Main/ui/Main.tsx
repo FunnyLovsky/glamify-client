@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// import styles from './Main.module.scss'
 import { useEffect } from 'react'
 import { Intro } from '@/widgets/Intro'
 import { ProductsList } from '@/features/ProductList'
