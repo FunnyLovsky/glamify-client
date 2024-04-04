@@ -9,50 +9,20 @@
     margin: 24px 0 80px;
 }
 
-.filters {
-    width: 295px;
-    height: 100px;
-    background: grey;
+@media screen and (max-width: 1024px) {
 }
 
-.head {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    & h3 {
-        font-size: 32px;
-        font-weight: bold;
-    }
+@media screen and (max-width: 800px) {
 }
 
-.sort {
-    display: flex;
-    gap: 12px;
-    & p {
-        font-size: 16px;
-    }
+@media screen and (max-width: 650px) {
 }
 
-.cont_list {
-    width: calc(100% - 295px);
+@media screen and (max-width: 600px) {
 }
 
-.list {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 16px 0 32px;
-    border-bottom: 1px solid $stroke_color;
+@media screen and (max-width: 425px) {
+}
 
-    gap: 36px 20px;
-
-    & a {
-        width: 31.8%;
-    }
-
-    & span {
-        width: 31.8%;
-    }
+@media screen and (max-width: 375px) {
 }

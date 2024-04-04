@@ -48,11 +48,66 @@
 
     gap: 36px 20px;
 
-    & a {
-        width: 31.8%;
+    & a,
+    span {
+        max-width: 295px;
+        width: 31%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .cont_list {
+        width: 80%;
     }
 
-    & span {
-        width: 31.8%;
+    .list {
+        // justify-content: space-between;
+        & a,
+        span {
+            width: 48%;
+        }
     }
+}
+
+@media screen and (max-width: 800px) {
+    .cont_list {
+        width: 100%;
+    }
+
+    .list {
+        gap: 24px 14px;
+        justify-content: flex-start;
+        & a,
+        span {
+            width: 31%;
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+}
+
+@media screen and (max-width: 600px) {
+    .list {
+        justify-content: space-between;
+        & a,
+        span {
+            width: 47%;
+        }
+    }
+    .head {
+        & h3 {
+            font-size: 25px;
+        }
+
+        & p {
+            font-size: 14px;
+        }
+    }
+}
+
+@media screen and (max-width: 425px) {
+}
+
+@media screen and (max-width: 375px) {
 }
