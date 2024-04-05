@@ -8,7 +8,7 @@ interface IProps extends IPropsChildren {
 }
 
 const Filter: FC<IProps> = ({ title, children }) => {
-    const [check, setCheck] = useState(false)
+    const [check, setCheck] = useState(true)
     const id = useId()
 
     const onChangeChech = () => {

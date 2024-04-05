@@ -6,9 +6,13 @@ import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import { createArray } from '@/shared/lib/createArray'
 import NotFound from '@/shared/ui/NotFound'
 import SEARCH from '@/shared/assets/icons/search.svg'
+import FILTER from '@/shared/assets/icons/filter.svg'
+import FilterModal from '../FilterModal/FilterModal'
+import { useState } from 'react'
 
 const CategoryList = () => {
     const { pathname, search } = useLocation()
+    const [modal, setModal] = useState(false)
     const { error, isLoading, products, totalCount, limit } = useAppSelector(
         (state) => state.productListReducer
     )
@@ -39,22 +43,26 @@ const CategoryList = () => {
 
         const currCount = totalCount > limit ? limit : totalCount
 
-        return isLoading ? (
-            <p>Loading...</p>
-        ) : (
-            <p>
-                Показано 1-{currCount} из {totalCount} товаров
-            </p>
+        return (
+            <p>{isLoading ? 'Loading...' : `Показано 1-${currCount} из ${totalCount} товаров`}</p>
         )
     }
+
     const title = mapPathName(pathname, search).pop()
+
     return (
         <div className={styles.cont_list}>
             <div className={styles.head}>
                 <h3>{title.title}</h3>
-                <div className={styles.sort}>{renderCountProduct()}</div>
+                <div className={styles.sort}>
+                    <button className={styles.icon} onClick={() => setModal(true)}>
+                        <FILTER />
+                    </button>
+                    {renderCountProduct()}
+                </div>
             </div>
             {renderList()}
+            {modal && <FilterModal onClose={() => setModal(false)} />}
         </div>
     )
 }
