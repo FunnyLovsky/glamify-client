@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const errorHandler = (error: any) => {
     if (error.response) {
         throw new Error(error.response.data.message)

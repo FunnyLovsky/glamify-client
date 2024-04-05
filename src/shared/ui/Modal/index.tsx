@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import styles from './Modal.module.scss'
 import { FC, useEffect, useState } from 'react'

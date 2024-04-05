@@ -2,8 +2,6 @@
 import styles from './FilterModal.module.scss'
 import Modal from '@/shared/ui/Modal'
 import { FC, useState } from 'react'
-import { RoutesName } from '@/app/providers/router'
-import AppLink from '@/shared/ui/AppLink'
 import { FilterProducts } from '@/features/FliterProducts'
 
 interface IProps {
