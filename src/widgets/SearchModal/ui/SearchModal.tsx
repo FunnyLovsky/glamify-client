@@ -2,7 +2,6 @@
 import styles from './SearchModal.module.scss'
 import AppInput from '@/shared/ui/AppInput'
 import Conatiner from '@/shared/ui/Container'
-import Modal from '@/shared/ui/Modal'
 import { FC, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import SEACRH from '@/shared/assets/icons/search.svg'
@@ -23,8 +22,9 @@ const SearchModal: FC<IProps> = ({ onClose }) => {
         setQuery(e.target.value)
     }
 
-    const onSumbitSearch = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
+    const onSumbitSearch = (e: React.FormEvent<HTMLFormElement> = null) => {
+        if (e) e.preventDefault()
+
         navigate(`${RoutesName.SHOP}?name=${query}`)
         onClose()
     }
@@ -34,41 +34,36 @@ const SearchModal: FC<IProps> = ({ onClose }) => {
     }, [])
 
     return (
-        <Modal onClick={onClose}>
-            <Conatiner>
-                <div className={styles.cont}>
-                    <div className={styles.search} onClick={(e) => e.stopPropagation()}>
-                        <form onSubmit={onSumbitSearch}>
-                            <AppInput
-                                placeholder="Поиск товаров..."
-                                type="text"
-                                icon="search"
-                                onChange={onSearchProducts}
-                                ref={input}
-                                isLoading={isLoading}
-                                iconOnClick={() => {
-                                    navigate(`${RoutesName.SHOP}?name=${query}`)
-                                    onClose()
-                                }}
-                            />
-                        </form>
+        <Conatiner>
+            <div className={styles.cont}>
+                <div className={styles.search} onClick={(e) => e.stopPropagation()}>
+                    <form onSubmit={onSumbitSearch}>
+                        <AppInput
+                            placeholder="Поиск товаров..."
+                            type="text"
+                            icon="search"
+                            onChange={onSearchProducts}
+                            ref={input}
+                            isLoading={isLoading}
+                            iconOnClick={onSumbitSearch}
+                        />
+                    </form>
 
-                        <div className={styles.results}>
-                            {products.map((item) => (
-                                <Link
-                                    to={`${RoutesName.SHOP}/${item.url}`}
-                                    onClick={onClose}
-                                    key={item.url}
-                                >
-                                    <SEACRH />
-                                    <h3>{item.name.toLowerCase()}</h3>
-                                </Link>
-                            ))}
-                        </div>
+                    <div className={styles.results}>
+                        {products.map((item) => (
+                            <Link
+                                to={`${RoutesName.SHOP}/${item.url}`}
+                                onClick={onClose}
+                                key={item.url}
+                            >
+                                <SEACRH />
+                                <h3>{item.name.toLowerCase()}</h3>
+                            </Link>
+                        ))}
                     </div>
                 </div>
-            </Conatiner>
-        </Modal>
+            </div>
+        </Conatiner>
     )
 }
 

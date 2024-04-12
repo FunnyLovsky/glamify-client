@@ -8,11 +8,13 @@ import NotFound from '@/shared/ui/NotFound'
 import SEARCH from '@/shared/assets/icons/search.svg'
 import FILTER from '@/shared/assets/icons/filter.svg'
 import FilterModal from '../FilterModal/FilterModal'
-import { useState } from 'react'
+import { useRef } from 'react'
+import Modal from '@/shared/ui/Modal'
+import { ModalOptions } from '@/shared/types/ModalOptions'
 
 const CategoryList = () => {
     const { pathname, search } = useLocation()
-    const [modal, setModal] = useState(false)
+    const filterRef = useRef<ModalOptions>(null)
     const { error, isLoading, products, totalCount, limit } = useAppSelector(
         (state) => state.productListReducer
     )
@@ -55,14 +57,16 @@ const CategoryList = () => {
             <div className={styles.head}>
                 <h3>{title.title}</h3>
                 <div className={styles.sort}>
-                    <button className={styles.icon} onClick={() => setModal(true)}>
+                    <button className={styles.icon} onClick={() => filterRef.current.open()}>
                         <FILTER />
                     </button>
                     {renderCountProduct()}
                 </div>
             </div>
             {renderList()}
-            {modal && <FilterModal onClose={() => setModal(false)} />}
+            <Modal ref={filterRef} withAnimation={true}>
+                <FilterModal onClose={() => filterRef.current.close()} />
+            </Modal>
         </div>
     )
 }

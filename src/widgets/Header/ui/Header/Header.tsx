@@ -6,16 +6,42 @@ import AppLink from '@/shared/ui/AppLink'
 import AppInput from '@/shared/ui/AppInput'
 import { ProfileIcon } from '@/entities/User'
 import { CartIcon } from '@/entities/Cart'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { SearchModal } from '@/widgets/SearchModal'
 import AppIconButton from '@/shared/ui/AppIconButton'
 import BurgerModal from '../BurgerModal/BurgerModal'
+import Modal from '@/shared/ui/Modal'
+import { ModalOptions } from '@/shared/types/ModalOptions'
 
 const Header = () => {
-    const [search, setSearch] = useState(false)
-    const [burger, setBurger] = useState(false)
+    const [paddingHeader, setPaddingHeader] = useState<'18px' | ''>('')
+    const searchRef = useRef<ModalOptions>(null)
+    const burgerRef = useRef<ModalOptions>(null)
 
-    const paddingHeader = search && document.body.offsetWidth > 650 ? '18px' : ''
+    useEffect(() => {
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+                    const bodyStyle = document.body.getAttribute('style')
+                    const bodySize = document.body.offsetWidth
+                    if (bodyStyle && bodyStyle.includes('overflow: hidden') && bodySize > 650) {
+                        setPaddingHeader('18px')
+                    } else {
+                        setPaddingHeader('')
+                    }
+                }
+            })
+        })
+
+        observer.observe(document.body, {
+            attributes: true,
+            attributeFilter: ['style'],
+        })
+
+        return () => {
+            observer.disconnect()
+        }
+    }, [])
 
     return (
         <header className={styles.header} style={{ paddingRight: paddingHeader }}>
@@ -25,7 +51,7 @@ const Header = () => {
                         <AppIconButton
                             icon="burger"
                             onClick={() => {
-                                setBurger(true)
+                                burgerRef.current.open()
                             }}
                         />
                         <NavLink to={RoutesName.MAIN} className={styles.avatar}>
@@ -52,19 +78,23 @@ const Header = () => {
                             placeholder="Поиск товаров..."
                             type="text"
                             icon="search"
-                            onFocus={() => setSearch(true)}
+                            onFocus={() => searchRef.current.open()}
                         />
                     </div>
 
                     <div className={styles.cont}>
-                        <AppIconButton icon="search" onClick={() => setSearch(true)} />
+                        <AppIconButton icon="search" onClick={() => searchRef.current.open()} />
                         <CartIcon />
                         <ProfileIcon />
                     </div>
                 </nav>
             </Conatiner>
-            {search && <SearchModal onClose={() => setSearch(false)} />}
-            {burger && <BurgerModal onClose={() => setBurger(false)} />}
+            <Modal ref={searchRef}>
+                <SearchModal onClose={() => searchRef.current.close()} />
+            </Modal>
+            <Modal ref={burgerRef} withAnimation={true}>
+                <BurgerModal onClose={() => burgerRef.current.close()} />
+            </Modal>
         </header>
     )
 }

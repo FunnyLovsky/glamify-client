@@ -3,12 +3,15 @@ import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import AppLink from '@/shared/ui/AppLink'
 import { RoutesName } from '@/app/providers/router'
 import AppButton from '@/shared/ui/AppButton'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { PaymentModal } from '@/features/PaymentModal'
+import Modal from '@/shared/ui/Modal'
+import { ModalOptions } from '@/shared/types/ModalOptions'
 
 const Checkout = () => {
     const { cartProducts } = useAppSelector((state) => state.cartReducer)
     const { auth } = useAppSelector((state) => state.authReducer)
+    const paymentRef = useRef<ModalOptions>(null)
     const [modal, setModal] = useState(false)
 
     const subtotal = cartProducts.reduce((acc, { price, count }) => price * count + acc, 0)
@@ -18,11 +21,11 @@ const Checkout = () => {
     const total = subtotal - discount
 
     const onOpenModal = () => {
-        setModal(true)
+        paymentRef.current.open()
     }
 
     const onCloseModal = () => {
-        setModal(false)
+        paymentRef.current.close()
     }
 
     return (
@@ -49,8 +52,10 @@ const Checkout = () => {
                     Авторизуйтесь для оплаты
                 </AppLink>
             )}
-
-            {modal && <PaymentModal onClose={onCloseModal} total={total} />}
+            <Modal ref={paymentRef}>
+                <PaymentModal onClose={onCloseModal} total={total} />
+            </Modal>
+            {/* {modal &&  */}
         </div>
     )
 }

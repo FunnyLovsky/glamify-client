@@ -23,24 +23,22 @@ const PaymentModal: FC<IProps> = ({ onClose, total }) => {
     }
 
     return (
-        <Modal onClick={onClose}>
-            <Conatiner>
-                <div className={styles.cont}>
-                    <div className={styles.payment} onClick={(e) => e.stopPropagation()}>
-                        <AppForm
-                            btn={`Оплатить ${total}₽`}
-                            error={error}
-                            isLoading={isLoading}
-                            onSubmit={onSubmit}
-                            title="Оплата"
-                        >
-                            <AppInput icon="promo" type="number" placeholder="Номер карты..." />
-                            <AppInput icon="promo" type="text" placeholder="Имя владельца..." />
-                        </AppForm>
-                    </div>
+        <Conatiner>
+            <div className={styles.cont}>
+                <div className={styles.payment} onClick={(e) => e.stopPropagation()}>
+                    <AppForm
+                        btn={`Оплатить ${total}₽`}
+                        error={error}
+                        isLoading={isLoading}
+                        onSubmit={onSubmit}
+                        title="Оплата"
+                    >
+                        <AppInput icon="promo" type="number" placeholder="Номер карты..." />
+                        <AppInput icon="promo" type="text" placeholder="Имя владельца..." />
+                    </AppForm>
                 </div>
-            </Conatiner>
-        </Modal>
+            </div>
+        </Conatiner>
     )
 }
 

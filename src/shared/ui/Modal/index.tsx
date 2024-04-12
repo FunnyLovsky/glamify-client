@@ -1,57 +1,81 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import styles from './Modal.module.scss'
-import { FC, useEffect, useState } from 'react'
+import { FC, forwardRef, useImperativeHandle, useState } from 'react'
 import { IPropsChildren } from '@/shared/types/IComponents'
 import { createPortal } from 'react-dom'
+import { ModalOptions } from '@/shared/types/ModalOptions'
 
 interface IProps extends IPropsChildren {
-    onClick: () => void
-    onCloseAnimation?: () => void | null
+    onClick?: () => void
+    withAnimation?: boolean
+    ref: React.ForwardedRef<ModalOptions>
 }
 
-const Modal: FC<IProps> = ({ children, onClick, onCloseAnimation = null }) => {
+const changeOverflow = (isClose: boolean) => {
+    if (document.body.offsetWidth > 650) {
+        document.body.style.paddingRight = isClose ? '18px' : ''
+    }
+    document.body.style.overflow = isClose ? 'hidden' : 'auto'
+}
+
+const Modal: FC<IProps> = forwardRef<ModalOptions, IProps>(function Modal(props, ref) {
+    const { children, withAnimation = false } = props
     const [isClose, setIsClose] = useState(false)
+    const [modal, setModal] = useState(false)
+
+    const openModal = () => {
+        setModal(true)
+        changeOverflow(true)
+        setIsClose(false)
+        document.addEventListener('keydown', onKeyDown)
+    }
 
     const closeModal = () => {
-        setIsClose(true)
-        if (onCloseAnimation) onCloseAnimation()
+        if (withAnimation) {
+            setTimeout(() => {
+                setIsClose(true)
+            }, 200)
+        } else {
+            setIsClose(true)
+        }
 
         setTimeout(() => {
-            onClick()
+            setModal(false)
+            changeOverflow(false)
         }, 200)
+
+        document.removeEventListener('keydown', onKeyDown)
     }
 
-    const onKeyDown = ({ key }: KeyboardEvent) => {
-        if (key === 'Escape') closeModal()
-    }
-
-    useEffect(() => {
-        if (document.body.offsetWidth > 650) {
-            document.body.style.paddingRight = '18px'
-        }
-        document.body.style.overflow = 'hidden'
-        document.addEventListener('keydown', onKeyDown)
-
-        return () => {
-            if (document.body.offsetWidth > 650) {
-                document.body.style.paddingRight = ''
-            }
-            document.body.style.overflow = 'auto'
-            document.removeEventListener('keydown', onKeyDown)
-        }
-    }, [])
-
-    return createPortal(
-        <div
-            className={styles.back}
-            onClick={closeModal}
-            style={{ animationName: isClose && styles.close }}
-        >
-            <div className={styles.modal}>{children}</div>
-        </div>,
-        document.querySelector('#modal')
+    useImperativeHandle(
+        ref,
+        () => ({
+            close() {
+                closeModal()
+            },
+            open() {
+                openModal()
+            },
+        }),
+        []
     )
-}
+    const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') closeModal()
+    }
+
+    return modal
+        ? createPortal(
+              <div
+                  className={styles.back}
+                  onClick={closeModal}
+                  style={{ animationName: isClose && styles.close }}
+              >
+                  {children}
+              </div>,
+              document.querySelector('#modal')
+          )
+        : null
+})
 
 export default Modal
