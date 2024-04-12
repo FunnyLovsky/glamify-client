@@ -3,30 +3,17 @@ import { useAppSelector } from '@/app/providers/StoreProvider/lib/hooks'
 import AppLink from '@/shared/ui/AppLink'
 import { RoutesName } from '@/app/providers/router'
 import AppButton from '@/shared/ui/AppButton'
-import { useRef, useState } from 'react'
-import { PaymentModal } from '@/features/PaymentModal'
-import Modal from '@/shared/ui/Modal'
-import { ModalOptions } from '@/shared/types/ModalOptions'
+import { FC } from 'react'
+import { getValueSum } from '../lib/getValueSum'
 
-const Checkout = () => {
+interface IProps {
+    openPayment: () => void
+}
+
+const Checkout: FC<IProps> = ({ openPayment }) => {
     const { cartProducts } = useAppSelector((state) => state.cartReducer)
     const { auth } = useAppSelector((state) => state.authReducer)
-    const paymentRef = useRef<ModalOptions>(null)
-    const [modal, setModal] = useState(false)
-
-    const subtotal = cartProducts.reduce((acc, { price, count }) => price * count + acc, 0)
-    const discount = cartProducts.reduce((acc, { price, discount, count }) => {
-        return acc + (discount ? Math.floor((price * discount) / 100) * count : 0)
-    }, 0)
-    const total = subtotal - discount
-
-    const onOpenModal = () => {
-        paymentRef.current.open()
-    }
-
-    const onCloseModal = () => {
-        paymentRef.current.close()
-    }
+    const { discount, subtotal, total } = getValueSum(cartProducts)
 
     return (
         <div className={styles.terminal}>
@@ -44,7 +31,7 @@ const Checkout = () => {
                 <span>₽{total}</span>
             </div>
             {auth ? (
-                <AppButton type="big" variant="black" onClick={onOpenModal}>
+                <AppButton type="big" variant="black" onClick={openPayment}>
                     Оформить заказ
                 </AppButton>
             ) : (
@@ -52,10 +39,6 @@ const Checkout = () => {
                     Авторизуйтесь для оплаты
                 </AppLink>
             )}
-            <Modal ref={paymentRef}>
-                <PaymentModal onClose={onCloseModal} total={total} />
-            </Modal>
-            {/* {modal &&  */}
         </div>
     )
 }

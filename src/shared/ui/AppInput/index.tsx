@@ -4,17 +4,19 @@ import SEACRH from '@/shared/assets/icons/search.svg'
 import EMAIL from '@/shared/assets/icons/email_2.svg'
 import PASSWORD from '@/shared/assets/icons/passwod.svg'
 import USER from '@/shared/assets/icons/profile.svg'
+import CARD from '@/shared/assets/icons/card.svg'
 
 interface IProps {
     placeholder?: string
     type: string
-    icon: 'search' | 'promo' | 'email' | 'password' | 'user'
+    icon: 'search' | 'promo' | 'email' | 'password' | 'user' | 'card'
     iconOnClick?: () => void
     value?: string
     isLoading?: boolean
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
     onFocus?: (e: React.ChangeEvent<HTMLInputElement>) => void
     disabled?: boolean
+    required?: boolean
     ref?: React.ForwardedRef<HTMLInputElement>
 }
 const icons = {
@@ -23,11 +25,22 @@ const icons = {
     email: EMAIL,
     password: PASSWORD,
     user: USER,
+    card: CARD,
 }
 
 const AppInput: FC<IProps> = forwardRef<HTMLInputElement, IProps>(function AppInput(props, ref) {
-    const { icon, type, onChange, onFocus, placeholder, value, iconOnClick, isLoading, disabled } =
-        props
+    const {
+        icon,
+        type,
+        onChange,
+        onFocus,
+        placeholder,
+        value,
+        iconOnClick,
+        isLoading,
+        disabled,
+        required,
+    } = props
     const Icon = icons[icon]
 
     return (
@@ -48,6 +61,7 @@ const AppInput: FC<IProps> = forwardRef<HTMLInputElement, IProps>(function AppIn
                 onChange={onChange}
                 onFocus={onFocus}
                 disabled={disabled}
+                required={required}
             />
         </div>
     )
