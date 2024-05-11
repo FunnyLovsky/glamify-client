@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /cart/
+Disallow: /auth/
+Disallow: /profile/
+
+Allow: /shop/
+Allow: /sales/
+Allow: /arrivals/
+Allow: /styles/
+
+Allow: /shop/*/
+Allow: /sales/*/
+Allow: /arrivals/*/
+Allow: /styles/*/

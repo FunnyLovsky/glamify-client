@@ -1,0 +1,31 @@
+{
+    "name": "GLAMIFY Store",
+    "short_name": "GLAMIFY",
+    "description": "Online store for trendy fashion",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ff007f",
+    "icons": [
+      {
+        "src": "/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "orientation": "portrait",
+    "prefer_related_applications": false,
+    "related_applications": [
+      {
+        "platform": "play",
+        "url": "https://play.google.com/store/apps/details?id=com.example.glamify",
+        "id": "com.example.glamify"
+      }
+    ]
+  }
+  
