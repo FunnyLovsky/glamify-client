@@ -18,10 +18,12 @@ const Checkout: FC<IProps> = ({ openPayment }) => {
     return (
         <div className={styles.terminal}>
             <h2>Сводка заказа</h2>
+
             <div className={styles.cont}>
                 <h4>Сумма товаров</h4>
                 <span>₽{subtotal}</span>
             </div>
+
             <div className={styles.cont}>
                 <h4>Скидка</h4>
                 <span>-₽{discount}</span>
